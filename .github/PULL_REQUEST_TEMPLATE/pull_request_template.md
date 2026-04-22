@@ -1,7 +1,7 @@
 Describe the pull request:
 
 
-References to the issues (e.g. \#1):
+References to the project tasks (e.g. Creating the prototype):
 - 
 - 
 
