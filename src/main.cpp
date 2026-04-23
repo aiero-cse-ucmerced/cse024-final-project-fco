@@ -4,5 +4,7 @@ int main() {
 
     Application app;
 
+    cout << "something" << endl;
+
     return app.run();
 }
