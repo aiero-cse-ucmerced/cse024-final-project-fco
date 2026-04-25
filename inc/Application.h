@@ -5,6 +5,7 @@
 
 class Application : public bobcat::Application_ {
     bobcat::Window* window;
+    bobcat::TextBox* textbox;
     
 public:
     Application();
