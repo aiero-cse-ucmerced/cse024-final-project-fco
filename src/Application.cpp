@@ -1,12 +1,14 @@
 #include <Application.h>
+#include <iostream>
+
+using namespace std;
+
 using namespace bobcat;
+    window = new Window(25, 75, 400, 
 
-Application::Application() {
-    window = new Window(25, 75, 400, 400, "Paintshop");
 
-    textBox = new TextBox(0, 0, 100, 100, "Layout Order"); // related to layout order system
-
-    window->end();
+    cout << "eh;gjoirvflkjgrfij" << endl;
+    
 
     window->show();
 }
