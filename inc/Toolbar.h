@@ -2,6 +2,7 @@
 #define TOOLBAR_H
 
 #include "Tool.h"
+#include <FL/Fl_Group.H>
 #include <bobcat_ui/group.h>
 #include <bobcat_ui/window.h>
 
@@ -58,6 +59,8 @@ namespace aiero {
 
             void addItem(aiero::Tool* tool) {
                 tools.push_back(tool);
+                Fl_Group::add(tool->obj());
+                
                 tool->obj()->parent(_obj);
 
                 _sortItems();
