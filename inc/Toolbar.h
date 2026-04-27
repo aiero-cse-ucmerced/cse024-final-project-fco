@@ -28,7 +28,7 @@ namespace aiero {
             
             for (aiero::Tool* tl : tools) {
                 tl->obj()->position(0, startingY);
-                startingY += tl->obj()->y() + (tools.back() != tl ? 5 : 0);
+                startingY += tl->obj()->h() + (tools.back() != tl ? 5 : 0);
             };
 
             _obj->redraw();
