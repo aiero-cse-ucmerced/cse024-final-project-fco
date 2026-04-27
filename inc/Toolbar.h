@@ -1,3 +1,7 @@
+#ifndef TOOLBAR_H
+#define TOOLBAR_H
+
+#include "Tool.h"
 #include <bobcat_ui/group.h>
 #include <bobcat_ui/window.h>
 
@@ -5,6 +9,8 @@
 class Toolbar : public bobcat::Group {
     int _x, _y, _w, _h;
     bobcat::Window* _obj;
+    
+    std::vector<aiero::Tool*> tools;
     
     void _init(int x, int y, int w, int h) {
         _x = 0;
@@ -15,9 +21,19 @@ class Toolbar : public bobcat::Group {
         _obj = new bobcat::Window(_x, _y, _w, _h, "");
         _obj->parent(nullptr);
     }
+
+    void _sortItems() {
+        int startingY = 0;
+        
+        for (aiero::Tool* tl : tools) {
+            tl->obj()->position(0, startingY);
+            startingY += tl->obj()->y() + (tools.back() != tl ? 5 : 0);
+        };
+
+        _obj->redraw();
+    };
     
     public:
-
         Toolbar() : Group(0, 0, 0, 0) {
             _init(0, 0, 0, 0);
         };
@@ -29,6 +45,13 @@ class Toolbar : public bobcat::Group {
         void parent(bobcat::Window* newParent) {
             _obj->parent(newParent);
         }
+
+        void addItem(aiero::Tool* tool) {
+            tools.push_back(tool);
+            tool->obj()->parent(_obj);
+
+            _sortItems();
+        };
         
         int x() const { return _obj->x(); };
         int y() const { return _obj->y(); };
@@ -37,3 +60,5 @@ class Toolbar : public bobcat::Group {
 
         
 };
+
+#endif
