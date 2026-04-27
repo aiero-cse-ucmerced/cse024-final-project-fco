@@ -17,12 +17,20 @@ namespace aiero {
     };
 
     class MainWindowToolbar : public aiero::Toolbar {
-        Tool
+        aiero::Tool* selectorTool;
+        aiero::Tool* paintBrushTool;
+        aiero::Tool* eraserTool;
+
+        // Shapes
+        aiero::Tool* circleTool;
+        aiero::Tool* pentagonTool;
+        aiero::Tool* rectangleTool;
+        aiero::Tool* starTool;
+        aiero::Tool* trapezoidTool;
+        aiero::Tool* triangleTool;
 
         public:
-            MainWindowToolbar(int w, int h) {
-                addItem(aiero::Tool *tool)
-            }
+            MainWindowToolbar(int w, int h); // will be initialized in src
     };
     
     class MainWindow : public bobcat::Group {
@@ -57,7 +65,7 @@ namespace aiero {
             void hide() { _obj->hide(); };
             void add(bobcat::Widget* sender) {
                 Fl_Group::add(sender);
-                window->add()
+                _obj->add(sender);
             };
     };
 }
