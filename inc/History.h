@@ -32,7 +32,6 @@ namespace aiero {
             }
 
             list.clear();
-            delete this;
         }
 
         int index() const { return _index; };

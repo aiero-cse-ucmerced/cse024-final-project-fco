@@ -39,7 +39,6 @@ namespace aiero {
         bobcat::Window* _obj;
         MainWindowMenubar _toolBar;
         
-
         void _initToolbar() {
             
         };

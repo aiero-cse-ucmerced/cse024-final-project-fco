@@ -49,8 +49,6 @@ namespace aiero {
                 };
 
                 tools.clear();
-
-                delete this;
             };
 
             void parent(bobcat::Window* newParent) {
