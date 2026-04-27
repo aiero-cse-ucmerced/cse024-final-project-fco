@@ -33,6 +33,8 @@ namespace aiero {
 
             virtual ~Tool() { delete tlbtn; };
 
+            bool active() const { return _active; };
+
             void activate() {
                 if (_active)
                     return;
@@ -53,6 +55,8 @@ namespace aiero {
                 else
                     deActivate();
             }
+
+            
 
             friend std::ostream &operator<<(std::ostream &os, const aiero::Tool &tl);
     };
