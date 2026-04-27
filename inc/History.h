@@ -75,6 +75,7 @@ namespace aiero {
             _index = 0;
             list.clear();
         }
+        void clear() { erase(); };
     };
 };
 
