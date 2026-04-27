@@ -5,70 +5,71 @@
 #include <bobcat_ui/group.h>
 #include <bobcat_ui/window.h>
 
-
-class Toolbar : public bobcat::Group {
-    int _x, _y, _w, _h;
-    bobcat::Window* _obj;
-    
-    std::vector<aiero::Tool*> tools;
-    
-    void _init(int x, int y, int w, int h) {
-        _x = 0;
-        _y = 0;
-        _w = 0;
-        _h = 0;
-
-        _obj = new bobcat::Window(_x, _y, _w, _h, "");
-        _obj->parent(nullptr);
-    }
-
-    void _sortItems() {
-        int startingY = 0;
+namespace aiero {
+    class Toolbar : public bobcat::Group {
+        int _x, _y, _w, _h;
+        bobcat::Window* _obj;
         
-        for (aiero::Tool* tl : tools) {
-            tl->obj()->position(0, startingY);
-            startingY += tl->obj()->y() + (tools.back() != tl ? 5 : 0);
-        };
-
-        _obj->redraw();
-    };
-    
-    public:
-        Toolbar() : Group(0, 0, 0, 0) {
-            _init(0, 0, 0, 0);
-        };
+        std::vector<aiero::Tool*> tools;
         
-        Toolbar(int x, int y, int w, int h) : Group(x, y, w, h) {
-            _init(x, y, w, h);
-        };
+        void _init(int x, int y, int w, int h) {
+            _x = 0;
+            _y = 0;
+            _w = 0;
+            _h = 0;
 
-        ~Toolbar() {
-            for (aiero::Tool* tl : tools) {
-                delete tl;
-            };
-
-            tools.clear();
-
-            delete this;
-        };
-
-        void parent(bobcat::Window* newParent) {
-            _obj->parent(newParent);
+            _obj = new bobcat::Window(_x, _y, _w, _h, "");
+            _obj->parent(nullptr);
         }
 
-        void addItem(aiero::Tool* tool) {
-            tools.push_back(tool);
-            tool->obj()->parent(_obj);
+        void _sortItems() {
+            int startingY = 0;
+            
+            for (aiero::Tool* tl : tools) {
+                tl->obj()->position(0, startingY);
+                startingY += tl->obj()->y() + (tools.back() != tl ? 5 : 0);
+            };
 
-            _sortItems();
+            _obj->redraw();
         };
         
-        int x() const { return _obj->x(); };
-        int y() const { return _obj->y(); };
-        int w() const { return _obj->w(); };
-        int h() const { return _obj->h(); };
+        public:
+            Toolbar() : Group(0, 0, 0, 0) {
+                _init(0, 0, 0, 0);
+            };
+            
+            Toolbar(int x, int y, int w, int h) : Group(x, y, w, h) {
+                _init(x, y, w, h);
+            };
 
-        
+            ~Toolbar() {
+                for (aiero::Tool* tl : tools) {
+                    delete tl;
+                };
+
+                tools.clear();
+
+                delete this;
+            };
+
+            void parent(bobcat::Window* newParent) {
+                _obj->parent(newParent);
+            }
+
+            void addItem(aiero::Tool* tool) {
+                tools.push_back(tool);
+                tool->obj()->parent(_obj);
+
+                _sortItems();
+            };
+            
+            int x() const { return _obj->x(); };
+            int y() const { return _obj->y(); };
+            int w() const { return _obj->w(); };
+            int h() const { return _obj->h(); };
+
+            
+    };
 };
 
 #endif
