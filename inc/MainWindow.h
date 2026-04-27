@@ -44,13 +44,11 @@ namespace aiero {
         };
 
         void _init() {
-            _obj = new bobcat::Window(400, 500, "Main Window");
+            _obj = new bobcat::Window(_x, _y, _w, _h, "Main Window");
         };
 
         public:
             MainWindow(int x, int y, int w, int h) : Group(x, y, w, h), _toolBar(w, h) {
-                Fl_Group::add(_obj);
-                
                 _x = x;
                 _y = y;
                 _w = w;
@@ -58,6 +56,8 @@ namespace aiero {
                 
                 _initToolbar();
                 _init();
+                
+                Fl_Group::add(_obj);
             };
 
             void show() { _obj->show(); };
