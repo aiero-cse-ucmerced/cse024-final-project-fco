@@ -30,7 +30,7 @@ namespace aiero {
             };
 
             float size() const { return _size; };
-            float size(float newSize) { _size = newSize; };
+            void size(float newSize) { _size = newSize; };
 
             bobcat::Widget* obj() const { return _obj; };
             bobcat::Widget* object() const { return _obj; };
