@@ -8,16 +8,14 @@
 
 #include <Enums.h>
 
-struct ToolSize {
-    float size = 0.0;
-};
-
 namespace aiero {
     class Tool {
         bool _active = false;
         TOOL _name;
 
-        bobcat::Widget *tlbtn; // derived class is expected to make this
+        double _size;
+        
+        bobcat::Widget* _obj; // derived class is expected to make this
 
         virtual void onClick() {};
         virtual void onMouseDown() {};
@@ -31,7 +29,13 @@ namespace aiero {
                 // _name = "unknown"; // tool name must remain lowercase
             };
 
-            virtual ~Tool() { delete tlbtn; };
+            float size() const { return _size; };
+            float size(float newSize) { _size = newSize; };
+
+            bobcat::Widget* obj() const { return _obj; };
+            bobcat::Widget* object() const { return _obj; };
+
+            virtual ~Tool() { delete _obj; };
 
             bool active() const { return _active; };
 
