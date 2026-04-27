@@ -29,6 +29,8 @@ namespace aiero {
                 // _name = "unknown"; // tool name must remain lowercase
             };
 
+            TOOL name() const { return _name; };
+            void name(TOOL tlname) { _name = tlname; };
             float size() const { return _size; };
             void size(float newSize) { _size = newSize; };
 
