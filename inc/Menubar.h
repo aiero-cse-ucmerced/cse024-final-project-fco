@@ -10,13 +10,12 @@ namespace aiero {
         bobcat::Menu* _obj;
         std::vector<bobcat::MenuItem*> _items;
 
-        virtual void onSelection(bobcat::Widget* sender);
+        virtual void onSelection(bobcat::Widget* sender) {};
         
         public:
-            Menubar(bobcat::Window* parent) : Group(0, 0, parent->w(), parent->h()) {
-                _obj = new bobcat::Menu();
-                _obj->parent(parent);            
-                _obj->show();
+            Menubar(int w, int h) : Group(0, 0, w, h) {
+                _obj = new bobcat::Menu();       
+                _obj->parent(nullptr);     
             };
 
             ~Menubar() {
