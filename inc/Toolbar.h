@@ -42,6 +42,16 @@ class Toolbar : public bobcat::Group {
             _init(x, y, w, h);
         };
 
+        ~Toolbar() {
+            for (aiero::Tool* tl : tools) {
+                delete tl;
+            };
+
+            tools.clear();
+
+            delete this;
+        };
+
         void parent(bobcat::Window* newParent) {
             _obj->parent(newParent);
         }

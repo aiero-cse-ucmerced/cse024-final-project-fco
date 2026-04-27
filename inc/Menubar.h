@@ -26,6 +26,7 @@ namespace aiero {
                 _items.clear();
 
                 delete _obj;
+                delete this;
             }
 
             bobcat::MenuItem* operator[](int index) {
