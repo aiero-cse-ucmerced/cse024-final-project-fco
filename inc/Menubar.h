@@ -1,6 +1,7 @@
 #ifndef MENUBAR_H
 #define MENUBAR_H
 
+#include <FL/Fl_Group.H>
 #include <bobcat_ui/group.h>
 #include <bobcat_ui/menu.h>
 #include <bobcat_ui/window.h>
@@ -45,6 +46,8 @@ namespace aiero {
             bobcat::MenuItem* addItem(std::string itemName) {
                 bobcat::MenuItem* mitem = new bobcat::MenuItem(itemName);
                 _obj->addItem(mitem);
+
+                Fl_Group::add(mitem); // important for tracking children of Menu
 
                 ON_CLICK(mitem, Menubar::onSelection);
                 
