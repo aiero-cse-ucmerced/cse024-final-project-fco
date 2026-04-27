@@ -45,6 +45,7 @@ namespace aiero {
             if (_index-1 < 0) return;
             
             _index -= 1;
+            list[_index+1].remove(list[_index+1].value);
             preApply(list[_index]);
             list[_index].apply(list[_index].value);
         };
@@ -53,6 +54,7 @@ namespace aiero {
             if (_index+1 > _length() - 1) return;
 
             _index += 1;
+            list[_index-1].remove(list[_index-1].value);
             preApply(list[_index]);
             list[_index].apply(list[_index].value);
             // preApply(list.back());
