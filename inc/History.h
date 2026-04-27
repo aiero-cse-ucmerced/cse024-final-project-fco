@@ -60,14 +60,21 @@ namespace aiero {
             // list.back()
         };
 
-
         void add(A arr) {
-            if (_index == _length() - 1)
-                _index += 1;
-            
+            const int lastIndex = _length() - 1;
+            if (_index < lastIndex) {
+                // Overwrite older records from the current index
+                list.erase(list.begin()+_index, list.end());
+            }
+
+            _index += 1;            
             list.push_back(arr);
         };
         
+        void erase() {
+            _index = 0;
+            list.clear();
+        }
     };
 };
 
