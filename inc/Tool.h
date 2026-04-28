@@ -60,7 +60,7 @@ namespace aiero {
             };
 
             void toggle() {
-                if (_active)
+                if (!_active)
                     activate();
                 else
                     deActivate();
