@@ -9,7 +9,17 @@
 #include "../Enums.h"
 
 class RectangleTool : public aiero::Tool {
-    
+    TOOL _name = SHAPE_RECTANGLE;
+
+    public:
+        RectangleTool();
+
+        // optional
+        void onClick(int x, int y) override;
+
+        // required
+        void _activate() override {};
+        void _deactivate() override {};
 };
 
 #endif

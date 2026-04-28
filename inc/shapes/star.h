@@ -9,7 +9,17 @@
 #include "../Enums.h"
 
 class StarTool : public aiero::Tool {
-    
+    TOOL _name = SHAPE_STAR;
+
+    public:
+        StarTool();
+
+        // optional
+        void onClick(int x, int y) override;
+
+        // required
+        void _activate() override {};
+        void _deactivate() override {};
 };
 
 #endif

@@ -9,7 +9,17 @@
 #include "../Enums.h"
 
 class TrapezoidTool : public aiero::Tool {
-    
+    TOOL _name = SHAPE_TRAPEZOID;
+
+    public:
+        TrapezoidTool();
+
+        // optional
+        void onClick(int x, int y) override;
+
+        // required
+        void _activate() override {};
+        void _deactivate() override {};
 };
 
 #endif

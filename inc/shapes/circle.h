@@ -11,23 +11,14 @@ class CircleTool : public aiero::Tool {
     TOOL _name = SHAPE_CIRCLE;
 
 public:
-    CircleTool() {
-
-    };
+    CircleTool();
 
     // optional
-    void onClick(int x, int y) override {};
-    void onMouseDown(int x, int y) override {};
-    void onMouseUp(int x, int y) override {};
+    void onClick(int x, int y) override;
 
     // required
-    void _activate() override {
-
-    };
-
-    void _deactivate() override {
-
-    };
+    void _activate() override {};
+    void _deactivate() override {};
 };
 
 #endif
