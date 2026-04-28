@@ -27,12 +27,13 @@ namespace aiero {
         
     public:
         History() {
-            _index = 0;
+            _index = -1;
         };
         
         ~History() {
-            for (Record r : list) {
-                r.remove();
+            for (const auto& r : list) {
+                if (r.remove)
+                    r.remove(r.value);
             }
 
             list.clear();
@@ -41,7 +42,7 @@ namespace aiero {
         int index() const { return _index; };
         int count() const { return list.size(); };
 
-        void preApply(Record<A> record) {
+        void preApply(const Record<A>& record) {
             // things to do before applying the record
         }
 
@@ -49,35 +50,58 @@ namespace aiero {
             if (_index-1 < 0) return;
             
             _index -= 1;
-            list[_index+1].remove(list[_index+1].value);
+            if (list[_index+1].remove) 
+                list[_index+1].remove(list[_index+1].value);
             preApply(list[_index]);
-            list[_index].apply(list[_index].value);
+            if (list[_index].apply)
+                list[_index].apply(list[_index].value);
         };
 
         void forward() {
             if (_index+1 > _length() - 1) return;
 
             _index += 1;
-            list[_index-1].remove(list[_index-1].value);
+            if (list[_index-1].remove)
+                list[_index-1].remove(list[_index-1].value);
             preApply(list[_index]);
-            list[_index].apply(list[_index].value);
+            if (list[_index].apply)
+                list[_index].apply(list[_index].value);
             // preApply(list.back());
             // list.back()
         };
 
         void add(A arr) {
-            const int lastIndex = _length() - 1;
-            if (_index < lastIndex) {
+            const int latestIndex = _length() - 1;
+            if (_index < latestIndex) {
                 // Overwrite older records from the current index
-                list.erase(list.begin()+_index, list.end());
+                list.erase(list.begin()+_index+1, list.end());
             }
 
             _index += 1;            
-            list.push_back(arr);
+            list.push_back({arr});
+        };
+        
+        // with apply and remove callback
+        void add(A arr, std::function<void(A)> applyCb, std::function<void(A)> removeCb) {
+            const int latestIndex = _length() - 1;
+            if (_index < latestIndex) {
+                // Overwrite older records from the current index
+                list.erase(list.begin()+_index+1, list.end());
+            }
+
+            _index += 1;            
+            list.push_back({arr, applyCb, removeCb});
         };
         
         void erase() {
-            _index = 0;
+            if (list.empty()) return;
+
+            for (const auto& r : list) {
+                if (r.remove)
+                    r.remove(r.value);
+            }
+            
+            _index = -1;
             list.clear();
         }
         void clear() { erase(); };
