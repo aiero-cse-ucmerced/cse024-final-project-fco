@@ -41,7 +41,7 @@ namespace aiero {
             bobcat::Widget* obj() const { return _obj; };
             bobcat::Widget* object() const { return _obj; };
 
-            virtual ~Tool() { delete _obj; delete this; };
+            virtual ~Tool() { delete _obj; };
 
             bool active() const { return _active; };
 
