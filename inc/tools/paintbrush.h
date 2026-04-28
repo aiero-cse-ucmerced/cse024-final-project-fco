@@ -7,11 +7,11 @@
 #include "../Enums.h"
 #include "../Tool.h"
 
-class EraserTool : public aiero::Tool {
-    TOOL _name = SHAPE_CIRCLE;
+class PaintBrushTool : public aiero::Tool {
+    TOOL _name = PAINT_BRUSH;
 
     public:
-        EraserTool() {
+        PaintBrushTool() {
 
         };
 

@@ -8,7 +8,7 @@
 #include "../Tool.h"
 
 class EraserTool : public aiero::Tool {
-    TOOL _name = SHAPE_CIRCLE;
+    TOOL _name = ERASER;
 
     public:
         EraserTool() {
