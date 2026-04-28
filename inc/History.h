@@ -42,7 +42,7 @@ namespace aiero {
         int index() const { return _index; };
         int count() const { return list.size(); };
 
-        void preApply(const Record<A>& record) {
+        virtual void preApply(const Record<A>& record) {
             // things to do before applying the record
         }
 
