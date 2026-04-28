@@ -5,4 +5,31 @@
 #ifndef CIRCLE_H
 #define CIRCLE_H
 
+#include "../Tool.h"
+#include "../Enums.h"
+
+class CircleTool : public aiero::Tool {
+    TOOL _name = SHAPE_CIRCLE;
+    
+    public:
+        CircleTool() {
+            
+        };
+
+        // optional
+        void onClick() {};
+        void onMouseDown() {};
+        void onMouseUp();
+
+        // required
+        void _activate() {
+            
+        };
+        
+        void _deactivate() {
+            
+        };
+
+};
+
 #endif
