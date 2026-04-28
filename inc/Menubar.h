@@ -33,7 +33,7 @@ namespace aiero {
             }
 
             bobcat::MenuItem* operator[](int index) {
-                if (index < 0 || _items.size() < index+1) throw "Non existent index";
+                if (_items.size()-1 < index+1) throw "Non existent index";
                 return _items[index];
             };
 
