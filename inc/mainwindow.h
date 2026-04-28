@@ -38,7 +38,7 @@ namespace aiero {
             bobcat::Window* menuWindow = linkedMenuItems[(bobcat::MenuItem*) menuItemClicked];
 
             
-        }
+        };
 
         void _linkTabVisibility(bobcat::MenuItem* mitem, bobcat::Window* menuWindow) {
             linkedMenuItems[mitem] = menuWindow;
@@ -46,23 +46,7 @@ namespace aiero {
         };
 
         public:
-            MainWindowMenubar(int w, int h) : Menubar(w, h) {
-                viewMenuTabToolbar = addItem("View/Toolbar");
-                viewMenuTabColorPicker = addItem("View/Color Picker");
-                viewMenuTabSize = addItem("View/Size");
-                viewMenuTabLayers = addItem("View/Layers");
-                
-                layerMenuTabDeleteShape = addItem("Layers/Delete Shape");
-                layerMenuTabBringLayerFront = addItem("Layers/Layer Front");
-                layerMenuTabBringLayerBack = addItem("Layers/Layer Back");
-                layerMenuTabBringLayerUp = addItem("Layers/Layer Up");
-                layerMenuTabBringLayerDown = addItem("Layers/Layer Down");
-
-                editMenuTabUndo = addItem("Edit/Undo");
-                editMenuTabRedo = addItem("Edit/Redo");
-                editMenuTabDeleteCurrentLayer = addItem("Edit/Delete Current Layer");
-                editMenuTabDeleteClearCanvas = addItem("Edit/Clear Canvas");
-            };
+            MainWindowMenubar(int w, int h); // defined in source files
     };
 
     class MainWindowSidePanel : public bobcat::Group {
@@ -91,10 +75,6 @@ namespace aiero {
         
         bobcat::Window* _obj;
         MainWindowMenubar _toolBar;
-        
-        void _initToolbar() {
-            
-        };
 
         void _init() {
             _obj = new bobcat::Window(_x, _y, _w, _h, "Main Window");
@@ -107,7 +87,6 @@ namespace aiero {
                 _w = w;
                 _h = h;
                 
-                _initToolbar();
                 _init();
                 
                 Fl_Group::add(_obj);
