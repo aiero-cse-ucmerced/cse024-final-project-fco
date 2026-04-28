@@ -12,18 +12,12 @@
 
 namespace aiero {
     class Toolbar : public bobcat::Group {
-        int _x, _y, _w, _h;
         bobcat::Window* _obj;
         
         std::vector<aiero::Tool*> tools;
         
         void _init(int x, int y, int w, int h) {
-            _x = x;
-            _y = y;
-            _w = w;
-            _h = h;
-
-            _obj = new bobcat::Window(_x, _y, _w, _h, "");
+            _obj = new bobcat::Window(x, y, w, h, "");
             _obj->parent(nullptr);
         }
 

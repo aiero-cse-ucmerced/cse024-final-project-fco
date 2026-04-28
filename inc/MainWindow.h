@@ -65,6 +65,10 @@ namespace aiero {
             };
     };
 
+    class MainWindowSidePanel : public bobcat::Group {
+        
+    };
+
     class MainWindowToolbar : public aiero::Toolbar {
         aiero::Tool* selectorTool;
         aiero::Tool* paintBrushTool;

@@ -11,7 +11,7 @@ namespace aiero {
 
     class Canvas : public bobcat::Group {
         
-    }
+    };
 };
 
 #endif
