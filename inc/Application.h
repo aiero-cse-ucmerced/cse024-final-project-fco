@@ -14,6 +14,8 @@ class Application : public bobcat::Application_ {
 
 public:
     Application();
+
+    ~Application();
 };
 
 #endif

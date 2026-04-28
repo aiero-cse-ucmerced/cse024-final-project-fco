@@ -20,7 +20,7 @@ void Application::onCanvasMouseDown(bobcat::Widget *sender, float x, float y){
     double green = colorSelector->g();
     double blue = colorSelector->b();
     Color color = {float(red), float(green), float(blue)};
-    canvas->addPoint(x,y,color);
+    canvas->addScribble(x,y,color);
     canvas->redraw();
 }
 
@@ -29,6 +29,12 @@ void Application::onCanvasMouseDrag(bobcat::Widget *sender, float x, float y){
     double green = colorSelector->g();
     double blue = colorSelector->b();
     Color color = {float(red), float(green), float(blue)};
-    canvas->addPoint(x,y,color);
+    canvas->addScribble(x,y,color);
     canvas->redraw();
+}
+
+Application::~Application() {
+    delete canvas;
+    delete colorSelector;
+    delete window;
 }
