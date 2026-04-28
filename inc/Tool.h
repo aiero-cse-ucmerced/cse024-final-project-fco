@@ -21,9 +21,9 @@ namespace aiero {
         
         bobcat::Widget* _obj; // derived class is expected to make this
 
-        virtual void onClick() {};
-        virtual void onMouseDown() {};
-        virtual void onMouseUp() {};
+        virtual void onClick(int x, int y) {};
+        virtual void onMouseDown(int x, int y) {};
+        virtual void onMouseUp(int x, int y) {};
 
         virtual void _activate() = 0;
         virtual void _deactivate() = 0;
