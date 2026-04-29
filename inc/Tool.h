@@ -6,6 +6,7 @@
 #define TOOL_H
 
 #include <bobcat_ui/bobcat_ui.h>
+#include <bobcat_ui/image.h>
 #include <iostream>
 #include <ostream>
 #include <string>
@@ -19,7 +20,7 @@ namespace aiero {
 
         double _size;
         
-        bobcat::Widget* _obj; // derived class is expected to make this
+        bobcat::Image* _obj; // derived class is expected to make this
 
         virtual void onClick(int x, int y) {};
         virtual void onMouseDown(int x, int y) {};
@@ -29,17 +30,15 @@ namespace aiero {
         virtual void _deactivate() = 0;
 
         public:
-            Tool() {
-                // _name = "unknown"; // tool name must remain lowercase
-            };
+            Tool();
 
             TOOL name() const { return _name; };
             void name(TOOL tlname) { _name = tlname; };
             float size() const { return _size; };
             void size(float newSize) { _size = newSize; };
 
-            bobcat::Widget* obj() const { return _obj; };
-            bobcat::Widget* object() const { return _obj; };
+            bobcat::Image* obj() const { return _obj; };
+            bobcat::Image* object() const { return _obj; };
 
             virtual ~Tool() { delete _obj; };
 
