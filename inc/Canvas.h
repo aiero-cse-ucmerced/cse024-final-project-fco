@@ -1,7 +1,6 @@
 // AIERO-FINAL-PROJECT-FCO FILE (Do not remove tag)
 // Refer to aiero.space/final-project-fco
 
-
 #ifndef CANVAS_H
 #define CANVAS_H
 
@@ -11,28 +10,27 @@
 
 namespace aiero {
 
-    class Canvas : public bobcat::Canvas_ {
-        std::vector<Point*> points;
-        std::vector<Shape*> shapes;
-        
-        Shape* selectedShape;
-        
-        public:
-            Canvas(int x, int y, int w, int h)  : bobcat::Canvas_(x, y, w, h) {
-                selectedShape = nullptr;
-            };
-            
-            bool checkMouseBounds(int x, int y) const {
-                
-                return true;
-            };
+class Canvas : public bobcat::Canvas_ {
+    std::vector<Point *> points;
+    std::vector<Shape *> shapes;
 
-            void deleteShape() {
-                
-            };
+    // TODO: history
 
-            void deleteObjectsFromMousePosition(float mx, float my);
+    Shape *selectedShape;
+
+public:
+    Canvas(int x, int y, int w, int h) : bobcat::Canvas_(x, y, w, h) {
+        selectedShape = nullptr;
     };
+
+    bool checkMouseBounds(int x, int y) const { return true; };
+
+    void deleteShape() {
+
+    };
+
+    void deleteObjectsFromMousePosition(float mx, float my);
 };
+}; // namespace aiero
 
 #endif
