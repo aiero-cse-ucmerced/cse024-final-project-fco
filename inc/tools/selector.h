@@ -15,8 +15,8 @@ class SelectorTool : public aiero::Tool {
 
         // optional
         void onClick(int x, int y) override;
-        void onMouseDown(int x, int y) override;
-        void onMouseUp(int x, int y) override;
+        // void onMouseDown(int x, int y) override;
+        // void onMouseUp(int x, int y) override;
 
         // required
         void _activate() override {

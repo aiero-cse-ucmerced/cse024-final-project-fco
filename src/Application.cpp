@@ -13,8 +13,6 @@ Application::Application() {
     mainWindow = new Window(100, 100, 800, 600, "Paintshop");
     mainWindowMenuBar = new MainWindowMenubar(mainWindow->w(), mainWindow->h());
     mainWindowMenuBar->parent(mainWindow);
-    
-    bobcat::MenuItem* mitem = mainWindowMenuBar->addItem("file");
 
     mainWindow->show();
 }
