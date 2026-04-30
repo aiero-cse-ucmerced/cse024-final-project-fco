@@ -56,6 +56,9 @@ namespace aiero {
                 };
 
                 tools.clear();
+                _focusedTool = nullptr;
+
+                delete _obj;
             };
 
             void parent(bobcat::Window* newParent) {
@@ -68,8 +71,9 @@ namespace aiero {
                 
                 tool->obj()->parent(_obj);
                 ON_CLICK(tool->obj(), Toolbar::_onClickEvent);
-
+                
                 _sortItems();
+                _obj->redraw();
             };
 
             aiero::Tool* focusedTool() const {

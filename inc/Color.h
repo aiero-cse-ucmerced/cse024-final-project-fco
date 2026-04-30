@@ -6,7 +6,7 @@
 #define COLOR_H
 
 #include <cmath>
-#include <utils.h>
+#include "utils.h"
 
 // max value up to 1.0
 struct BaseColor {

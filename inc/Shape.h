@@ -13,7 +13,10 @@ protected:
     
     Color _color;
 public:
-    Shape();
+    Shape() : _color(0, 0, 0) {
+        _x = 0.0;
+        _y = 0.0;
+    };
     
     virtual void color(Color newColor) {
         _color = newColor;
@@ -21,7 +24,7 @@ public:
     };
     
     Color color() const { return _color; };
-    virtual void draw() const = 0;
+    virtual void draw() = 0;
     virtual bool checkMouseBounds() const = 0;
 
     virtual ~Shape();

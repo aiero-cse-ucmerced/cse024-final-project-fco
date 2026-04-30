@@ -12,7 +12,7 @@ class Application : public bobcat::Application_ {
     bobcat::Window* mainWindow;
     
     aiero::MainWindowMenubar* mainWindowMenuBar;
-    
+    aiero::MainWindowToolbar* mainWindowToolBar;
 public:
     Application();
 };

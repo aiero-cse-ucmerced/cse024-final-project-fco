@@ -5,6 +5,8 @@
 #ifndef ALL_SHAPERS_H
 #define ALL_SHAPERS_H
 
+#include "Shape.h"
+
 #include "shapers/circle.h"
 #include "shapers/pentagon.h"
 #include "shapers/rectangle.h"

@@ -7,6 +7,20 @@
 #include "../Enums.h"
 #include "../Tool.h"
 
+#include "../Shape.h"
+
+class Circle : public Shape {
+    public:
+        Circle();
+        void draw() override {
+            
+        };
+        
+        bool checkMouseBounds() const override {
+            
+        };
+};
+
 class CircleTool : public aiero::Tool {
     TOOL _name = SHAPE_CIRCLE;
 
