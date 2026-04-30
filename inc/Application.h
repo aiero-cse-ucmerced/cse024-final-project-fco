@@ -5,12 +5,14 @@
 #ifndef APPLICATION_H
 #define APPLICATION_H
 
+#include "Canvas.h"
 #include "mainwindow.h"
 #include <bobcat_ui/all.h>
 
 class Application : public bobcat::Application_ {
     bobcat::Window* mainWindow;
-    
+
+    aiero::Canvas* drawingCanvas;
     aiero::MainWindowMenubar* mainWindowMenuBar;
     aiero::MainWindowToolbar* mainWindowToolBar;
 public:
