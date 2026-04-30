@@ -5,24 +5,21 @@
 #define POINT_H
 
 #include "Color.h"
+#include "Shape.h"
 
-class Point {
-protected:
-    float _x, _y;
-    int size;
-    
-    Color _color;
+class Point : public Shape {
+
 public:
     Point(int x, int y);
     
-    virtual void color(Color newColor) {
+    virtual void color(Color newColor) override {
         _color = newColor;
         // stuff happens
     };
     
     Color color() const { return _color; };
-    virtual void draw();
-    virtual bool checkMouseBounds(int mouseX, int mouseY) {
+    void draw() override;
+    bool checkMouseBounds(float mouseX, float mouseY) const override {
         float dx = mouseX - _x;
         float dy = mouseY - _y;
         bool hit = dx*dx + dy*dy <= size*size;
