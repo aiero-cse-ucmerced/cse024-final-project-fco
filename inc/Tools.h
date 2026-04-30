@@ -7,5 +7,6 @@
 
 #include "tools/eraser.h"
 #include "tools/paintbrush.h"
+#include "tools/selector.h"
 
 #endif

@@ -5,12 +5,18 @@
 #ifndef CANVAS_H
 #define CANVAS_H
 
-#include <bobcat_ui/group.h>
+#include <bobcat_ui/canvas.h>
 
 namespace aiero {
 
-    class Canvas : public bobcat::Group {
+    class Canvas : public bobcat::Canvas_ {
         
+        
+        public:
+            bool checkMouseBounds(int x, int y) const {
+                
+                return true;
+            };
     };
 };
 

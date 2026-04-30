@@ -5,11 +5,13 @@
 #ifndef APPLICATION_H
 #define APPLICATION_H
 
+#include "mainwindow.h"
 #include <bobcat_ui/all.h>
 
 class Application : public bobcat::Application_ {
-    bobcat::Window* window;
-    bobcat::TextBox* textbox;
+    bobcat::Window* mainWindow;
+    
+    aiero::MainWindowMenubar* mainWindowMenuBar;
     
 public:
     Application();

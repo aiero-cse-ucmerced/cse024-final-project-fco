@@ -6,6 +6,7 @@
 #define TOOL_H
 
 #include <bobcat_ui/bobcat_ui.h>
+#include <bobcat_ui/button.h>
 #include <bobcat_ui/image.h>
 #include <iostream>
 #include <ostream>
@@ -20,7 +21,7 @@ namespace aiero {
 
         double _size;
         
-        bobcat::Image* _obj; // derived class is expected to make this
+        bobcat::Button* _obj; // derived class is expected to make this
 
         virtual void onClick(int x, int y) {};
         virtual void onMouseDown(int x, int y) {};
@@ -37,8 +38,8 @@ namespace aiero {
             float size() const { return _size; };
             void size(float newSize) { _size = newSize; };
 
-            bobcat::Image* obj() const { return _obj; };
-            bobcat::Image* object() const { return _obj; };
+            bobcat::Button* obj() const { return _obj; };
+            bobcat::Button* object() const { return _obj; };
 
             virtual ~Tool() { delete _obj; };
 

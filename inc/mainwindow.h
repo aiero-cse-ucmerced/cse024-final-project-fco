@@ -36,21 +36,27 @@ namespace aiero {
         void _onLinkVisibility(bobcat::Widget* menuItemClicked) {
             if (linkedMenuItems.find((bobcat::MenuItem*) menuItemClicked) == linkedMenuItems.end()) return;
             bobcat::Window* menuWindow = linkedMenuItems[(bobcat::MenuItem*) menuItemClicked];
-
-            
         };
 
-        void _linkTabVisibility(bobcat::MenuItem* mitem, bobcat::Window* menuWindow) {
-            linkedMenuItems[mitem] = menuWindow;
-            ON_CLICK(mitem, MainWindowMenubar::_onLinkVisibility);
-        };
 
         public:
             MainWindowMenubar(int w, int h); // defined in source files
+            
+            void linkTabVisibility(bobcat::MenuItem* mitem, bobcat::Window* menuWindow) {
+                linkedMenuItems[mitem] = menuWindow;
+                ON_CLICK(mitem, MainWindowMenubar::_onLinkVisibility);
+            };
     };
 
     class MainWindowSidePanel : public bobcat::Group {
-        
+        bobcat::Window* colorPanelWindow;
+        bobcat::Window* sizePanelWindow;
+        bobcat::Window* layerPanelWindow;
+
+        public:
+            MainWindowSidePanel();
+            
+            // void bobcat::
     };
 
     class MainWindowToolbar : public aiero::Toolbar {
@@ -70,35 +76,35 @@ namespace aiero {
             MainWindowToolbar(int w, int h); // will be initialized in src
     };
     
-    class MainWindow : public bobcat::Group {
-        int _x, _y, _w, _h;
+    // class MainWindow : public bobcat::Group {
+    //     int _x, _y, _w, _h;
         
-        bobcat::Window* _obj;
-        MainWindowMenubar _toolBar;
+    //     bobcat::Window* _obj;
+    //     MainWindowMenubar _toolBar;
 
-        void _init() {
-            _obj = new bobcat::Window(_x, _y, _w, _h, "Main Window");
-        };
+    //     void _init() {
+    //         _obj = new bobcat::Window(_x, _y, _w, _h, "Main Window");
+    //     };
 
-        public:
-            MainWindow(int x, int y, int w, int h) : Group(x, y, w, h), _toolBar(w, h) {
-                _x = x;
-                _y = y;
-                _w = w;
-                _h = h;
+    //     public:
+    //         MainWindow(int x, int y, int w, int h) : Group(x, y, w, h), _toolBar(w, h) {
+    //             _x = x;
+    //             _y = y;
+    //             _w = w;
+    //             _h = h;
                 
-                _init();
+    //             _init();
                 
-                Fl_Group::add(_obj);
-            };
+    //             Fl_Group::add(_obj);
+    //         };
 
-            void show() { _obj->show(); };
-            void hide() { _obj->hide(); };
-            void add(bobcat::Widget* sender) {
-                Fl_Group::add(sender);
-                _obj->add(sender);
-            };
-    };
+    //         void show() { _obj->show(); };
+    //         void hide() { _obj->hide(); };
+    //         void add(bobcat::Widget* sender) {
+    //             Fl_Group::add(sender);
+    //             _obj->add(sender);
+    //         };
+    // };
 }
 
 #endif

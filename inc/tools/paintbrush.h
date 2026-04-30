@@ -11,14 +11,12 @@ class PaintBrushTool : public aiero::Tool {
     TOOL _name = PAINT_BRUSH;
 
     public:
-        PaintBrushTool() {
-
-        };
+        PaintBrushTool(); // to be implemented in the source files
 
         // optional
-        void onClick(int x, int y) override {};
-        void onMouseDown(int x, int y) override {};
-        void onMouseUp(int x, int y) override {};
+        void onClick(int x, int y) override;
+        void onMouseDown(int x, int y) override;
+        void onMouseUp(int x, int y) override;
 
         // required
         void _activate() override {

@@ -33,7 +33,7 @@ namespace aiero {
             }
 
             bobcat::MenuItem* operator[](int index) {
-                if (_items.size()-1 < index+1) throw "Non existent index";
+                if ((int) _items.size()-1 < index+1) throw "Non existent index";
                 return _items[index];
             };
 
@@ -55,7 +55,9 @@ namespace aiero {
                 ON_CLICK(mitem, Menubar::onSelection);
                 
                 return mitem;
-            }
+            };
+
+            void parent(bobcat::Window* par) { _obj->parent(par); };
             
     };
 

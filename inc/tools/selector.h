@@ -7,11 +7,11 @@
 #include "../Enums.h"
 #include "../Tool.h"
 
-class EraserTool : public aiero::Tool {
-    TOOL _name = ERASER;
+class SelectorTool : public aiero::Tool {
+    TOOL _name = SELECTOR;
 
     public:
-        EraserTool();
+        SelectorTool();
 
         // optional
         void onClick(int x, int y) override;

@@ -5,6 +5,7 @@
 #ifndef TOOLBAR_H
 #define TOOLBAR_H
 
+#include "Enums.h"
 #include "Tool.h"
 #include <FL/Fl_Group.H>
 #include <bobcat_ui/group.h>
@@ -13,11 +14,13 @@
 namespace aiero {
     class Toolbar : public bobcat::Group {
         bobcat::Window* _obj;
+        aiero::Tool* _focusedTool;
         
         std::vector<aiero::Tool*> tools;
         
         void _init(int x, int y, int w, int h) {
             _obj = new bobcat::Window(x, y, w, h, "");
+            _obj->end();
             _obj->parent(nullptr);
         }
 
@@ -31,9 +34,15 @@ namespace aiero {
 
             _obj->redraw();
         };
+
+        void _onClickEvent(bobcat::Widget* sender) {
+            
+        }
         
         public:
             Toolbar() : Group(0, 0, 0, 0) {
+                _focusedTool = nullptr;
+                
                 _init(0, 0, 0, 0);
             };
             
@@ -58,10 +67,29 @@ namespace aiero {
                 Fl_Group::add(tool->obj());
                 
                 tool->obj()->parent(_obj);
+                ON_CLICK(tool->obj(), Toolbar::_onClickEvent);
 
                 _sortItems();
             };
-            
+
+            aiero::Tool* focusedTool() const {
+                return _focusedTool;
+            };
+
+            void focusTool(TOOL tlname) {
+                if (_focusedTool != nullptr && _focusedTool->name() == tlname) return;
+
+                for (aiero::Tool* tl : tools) {
+                    if (tl->name() == tlname) {
+                        if (_focusedTool != nullptr)
+                            _focusedTool->deActivate();
+                        
+                        tl->activate();
+                        break;
+                    }
+                };
+            };
+
             int x() const { return _obj->x(); };
             int y() const { return _obj->y(); };
             int w() const { return _obj->w(); };
