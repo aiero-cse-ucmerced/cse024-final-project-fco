@@ -35,7 +35,7 @@ namespace aiero {
             _obj->redraw();
         };
 
-        void _onClickEvent(bobcat::Widget* sender) {
+        virtual void _onClickEvent(bobcat::Widget* sender) {
             
         }
         
