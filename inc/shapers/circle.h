@@ -12,13 +12,18 @@
 class Circle : public Shape {
     public:
         Circle();
+        ~Circle() {
+
+        };
+        
         void draw() override {
             
         };
         
         bool checkMouseBounds() const override {
-            
+            return false;
         };
+
 };
 
 class CircleTool : public aiero::Tool {

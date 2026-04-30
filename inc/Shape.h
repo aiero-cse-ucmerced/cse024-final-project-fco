@@ -27,7 +27,9 @@ public:
     virtual void draw() = 0;
     virtual bool checkMouseBounds() const = 0;
 
-    virtual ~Shape();
+    virtual ~Shape() {
+        // do nothing
+    };
 };
 
 #endif

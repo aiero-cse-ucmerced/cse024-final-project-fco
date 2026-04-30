@@ -28,8 +28,6 @@ public:
         bool hit = dx*dx + dy*dy <= size*size;
         return hit;
     };
-
-    virtual ~Point();
 };
 
 #endif
