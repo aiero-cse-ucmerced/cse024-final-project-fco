@@ -34,6 +34,6 @@ MainWindowMenubar::MainWindowMenubar(int w, int h) : Menubar(w, h) {
     editMenuTabDeleteClearCanvas = addItem("Edit/Clear Canvas");
 };
 
-MainWindowToolbar::MainWindowToolbar(int w, int h) {
+MainWindowToolbar::MainWindowToolbar(int x, int y, int w, int h) {
     
 }

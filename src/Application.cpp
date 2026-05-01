@@ -12,10 +12,18 @@ using namespace aiero;
 
 Application::Application() {
     mainWindow = new Window(100, 100, 800, 600, "Paintshop");
+
+    mainWindowToolBar = new MainWindowToolbar(0, 40, 45, mainWindow->h() - 80);
+
+    drawingCanvas = new MainDrawingCanvas(50, 50, mainWindow->w() - (50*2), mainWindow->h() - (50*2));
+
+    // last
+    
     mainWindowMenuBar = new MainWindowMenubar(mainWindow->w(), mainWindow->h());
     mainWindowMenuBar->parent(mainWindow);
 
-    drawingCanvas = new Canvas(50, 50, mainWindow->w() - (50*2), mainWindow->h() - (50*2));
+    mainWindowMenuBar->linkTabVisibility(mainWindowMenuBar[(std::string) "View/Toolbar"], mainWindowToolBar->obj())
+
 
     mainWindow->show();
 }
