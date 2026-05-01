@@ -26,6 +26,7 @@ namespace aiero {
         virtual void onClick(int x, int y) {};
         virtual void onMouseDown(int x, int y) {};
         virtual void onMouseUp(int x, int y) {};
+        virtual void onMouseDrag(int x, int y) {};
 
         virtual void _activate() = 0;
         virtual void _deactivate() = 0;

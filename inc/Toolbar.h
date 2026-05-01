@@ -36,8 +36,23 @@ namespace aiero {
         };
 
         virtual void _onClickEvent(bobcat::Widget* sender) {
+            if (_focusedTool != nullptr && _focusedTool->obj() == sender) return;
             
-        }
+            if (_focusedTool)
+                _focusedTool->deActivate();
+
+            _focusedTool = nullptr;
+
+            for (aiero::Tool* tl : tools) {
+                if (tl->obj() == sender) {
+                    tl->activate();
+                    
+                    _focusedTool = tl;
+                    
+                    break;
+                }
+            }
+        };
         
         public:
             Toolbar() : Group(0, 0, 0, 0) {
@@ -51,12 +66,13 @@ namespace aiero {
             };
 
             ~Toolbar() {
+                _focusedTool = nullptr;
+                
                 for (aiero::Tool* tl : tools) {
                     delete tl;
                 };
 
                 tools.clear();
-                _focusedTool = nullptr;
 
                 delete _obj;
             };
@@ -75,6 +91,8 @@ namespace aiero {
                 _sortItems();
                 _obj->redraw();
             };
+
+            const bobcat::Window* obj() const { return _obj; };
 
             aiero::Tool* focusedTool() const {
                 return _focusedTool;

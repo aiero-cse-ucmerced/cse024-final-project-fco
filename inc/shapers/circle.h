@@ -20,7 +20,7 @@ class Circle : public Shape {
             
         };
         
-        bool checkMouseBounds() const override {
+        bool checkMouseBounds(float mouseX, float mouseY) const override {
             return false;
         };
 

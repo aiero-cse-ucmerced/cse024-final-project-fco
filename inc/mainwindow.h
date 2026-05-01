@@ -4,8 +4,10 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#include "Canvas.h"
 #include "Menubar.h"
 #include "Toolbar.h"
+#include <FL/Enumerations.H>
 #include <FL/Fl_Group.H>
 #include <bobcat_ui/bobcat_ui.h>
 #include <bobcat_ui/group.h>
@@ -31,20 +33,31 @@ namespace aiero {
         bobcat::MenuItem* editMenuTabDeleteCurrentLayer;
         bobcat::MenuItem* editMenuTabDeleteClearCanvas;
 
-        std::unordered_map<bobcat::MenuItem*, bobcat::Window*> linkedMenuItems;
+        std::unordered_map<bobcat::MenuItem*, bobcat::Widget*> linkedMenuItems;
 
         void _onLinkVisibility(bobcat::Widget* menuItemClicked) {
             if (linkedMenuItems.find((bobcat::MenuItem*) menuItemClicked) == linkedMenuItems.end()) return;
-            bobcat::Window* menuWindow = linkedMenuItems[(bobcat::MenuItem*) menuItemClicked];
+            bobcat::Widget* menuWidget = linkedMenuItems[(bobcat::MenuItem*) menuItemClicked];
+
+            _updateLinkVisibility((bobcat::MenuItem*) menuItemClicked, menuWidget);
         };
 
+        void _updateLinkVisibility(bobcat::MenuItem* mitem, bobcat::Widget* menuWidget) {
+            if (menuWidget->visible()) {
+                mitem->color(FL_GREEN);
+                return;
+            }
+            
+            mitem->color(FL_BACKGROUND_COLOR);
+        }
 
         public:
             MainWindowMenubar(int w, int h); // defined in source files
             
-            void linkTabVisibility(bobcat::MenuItem* mitem, bobcat::Window* menuWindow) {
-                linkedMenuItems[mitem] = menuWindow;
+            void linkTabVisibility(bobcat::MenuItem* mitem, bobcat::Widget* widget) {
+                linkedMenuItems[mitem] = widget;
                 ON_CLICK(mitem, MainWindowMenubar::_onLinkVisibility);
+                _updateLinkVisibility(mitem, widget);
             };
     };
 
@@ -73,7 +86,14 @@ namespace aiero {
         aiero::Tool* triangleTool;
 
         public:
-            MainWindowToolbar(int w, int h); // will be initialized in src
+            MainWindowToolbar(int x, int y, int w, int h); // will be initialized in src
+    };
+
+    class MainDrawingCanvas : public aiero::Canvas {
+        public:
+            MainDrawingCanvas(int x, int y, int w, int h) : Canvas(x, y, w, h) {
+                
+            };
     };
     
     // class MainWindow : public bobcat::Group {

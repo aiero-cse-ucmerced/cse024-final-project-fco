@@ -18,10 +18,16 @@ class Canvas : public bobcat::Canvas_ {
 
     Shape *selectedShape;
 
+    virtual void onClickEvent(bobcat::Widget* sender) {};
+    virtual void onMouseUpEvent(bobcat::Widget* sender, float mouseX, float mouseY) {};
+    virtual void onMouseDownEvent(bobcat::Widget* sender, float mouseX, float mouseY) {};
+    virtual void onMouseDragEvent(bobcat::Widget* sender, float mouseX, float mouseY) {};
 public:
-    Canvas(int x, int y, int w, int h) : bobcat::Canvas_(x, y, w, h) {
+    Canvas(int x, int y, int w, int h) : Canvas_(x, y, w, h) {
         selectedShape = nullptr;
     };
+
+    void clear();
 
     bool checkMouseBounds(int x, int y) const { return true; };
 
@@ -30,6 +36,11 @@ public:
     };
 
     void deleteObjectsFromMousePosition(float mx, float my);
+    
+    // required
+    void render() {
+
+    };
 };
 }; // namespace aiero
 

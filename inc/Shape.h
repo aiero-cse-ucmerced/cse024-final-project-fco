@@ -10,6 +10,8 @@ class Shape {
 protected:
     float _x;
     float _y;
+
+    int size;
     
     Color _color;
 public:
@@ -23,9 +25,9 @@ public:
         // stuff happens
     };
     
-    Color color() const { return _color; };
+    const Color color() const { return _color; };
     virtual void draw() = 0;
-    virtual bool checkMouseBounds() const = 0;
+    virtual bool checkMouseBounds(float mouseX, float mouseY) const = 0;
 
     virtual ~Shape() {
         // do nothing

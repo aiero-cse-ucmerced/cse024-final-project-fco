@@ -37,7 +37,7 @@ namespace aiero {
                 return _items[index];
             };
 
-            bobcat::MenuItem* operator[](std::string menuName) {
+            bobcat::MenuItem* operator[](const std::string menuName) {
                 for (bobcat::MenuItem* mitem : _items) {
                     if (mitem->label() == menuName)
                         return mitem;
@@ -49,7 +49,8 @@ namespace aiero {
             bobcat::MenuItem* addItem(std::string itemName) {
                 bobcat::MenuItem* mitem = new bobcat::MenuItem(itemName);
                 _obj->addItem(mitem);
-
+                _items.push_back(mitem);
+                
                 Fl_Group::add(mitem); // important for tracking children of Menu
 
                 ON_CLICK(mitem, Menubar::onSelection);
