@@ -10,6 +10,7 @@ class Application : public bobcat::Application_ {
     Fl_Color_Chooser *colorSelector = new Fl_Color_Chooser(500,0,300,143,0);
     
     void onCanvasMouseDown(bobcat::Widget* sender, float x, float y);
+    void onCanvasMouseUp(bobcat::Widget* sender, float x, float y);
     void onCanvasMouseDrag(bobcat::Widget* sender, float x, float y);
 
 public:
@@ -19,4 +20,5 @@ public:
 };
 
 #endif
+
 

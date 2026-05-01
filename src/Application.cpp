@@ -11,6 +11,7 @@ Application::Application() {
     window->add(canvas);
     window->add(colorSelector);
     ON_MOUSE_DOWN(canvas, Application::onCanvasMouseDown);
+    ON_MOUSE_UP(canvas, Application::onCanvasMouseUp);
     ON_DRAG(canvas, Application::onCanvasMouseDrag);
 
     window->show();
@@ -20,7 +21,8 @@ void Application::onCanvasMouseDown(bobcat::Widget *sender, float x, float y){
     double green = colorSelector->g();
     double blue = colorSelector->b();
     Color color = {float(red), float(green), float(blue)};
-    canvas->addScribble(x,y,color);
+    canvas->beginScribble();
+    canvas->addPoint(x, y, color);
     canvas->redraw();
 }
 
@@ -29,7 +31,12 @@ void Application::onCanvasMouseDrag(bobcat::Widget *sender, float x, float y){
     double green = colorSelector->g();
     double blue = colorSelector->b();
     Color color = {float(red), float(green), float(blue)};
-    canvas->addScribble(x,y,color);
+    canvas->addPoint(x, y, color);
+    canvas->redraw();
+}
+
+void Application::onCanvasMouseUp(bobcat::Widget *sender, float x, float y){
+    canvas->endScribble();
     canvas->redraw();
 }
 

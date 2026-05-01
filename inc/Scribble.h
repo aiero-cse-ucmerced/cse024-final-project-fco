@@ -16,7 +16,10 @@ class Scribble{
    Color color;
 
 public:
-    Scribble(float x, float y, Color color);
+    Scribble();
+    void addPoint(float x, float y, Color color);
     void draw() const;
     ~Scribble();
 };
+
+#endif
