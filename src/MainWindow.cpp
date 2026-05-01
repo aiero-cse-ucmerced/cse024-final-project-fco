@@ -16,7 +16,7 @@ using namespace std;
 using namespace bobcat;
 using namespace aiero;
 
-MainWindowMenubar::MainWindowMenubar(int w, int h) : Menubar(w, h) {
+MWMenubar::MWMenubar(int w, int h) : Menubar(w, h) {
     viewMenuTabToolbar = addItem("View/Toolbar");
     viewMenuTabColorPicker = addItem("View/Color Picker");
     viewMenuTabSize = addItem("View/Size");
@@ -32,8 +32,10 @@ MainWindowMenubar::MainWindowMenubar(int w, int h) : Menubar(w, h) {
     editMenuTabRedo = addItem("Edit/Redo");
     editMenuTabDeleteCurrentLayer = addItem("Edit/Delete Current Layer");
     editMenuTabDeleteClearCanvas = addItem("Edit/Clear Canvas");
+
+    // cout << "mw menubar init done" << endl;
 };
 
-MainWindowToolbar::MainWindowToolbar(int x, int y, int w, int h) {
-    
+MWToolbar::MWToolbar(int x, int y, int w, int h) {
+    _obj = new bobcat::Window(x, y, w, h, "");
 }

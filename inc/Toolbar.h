@@ -7,21 +7,20 @@
 
 #include "Enums.h"
 #include "Tool.h"
+#include <FL/Enumerations.H>
 #include <FL/Fl_Group.H>
 #include <bobcat_ui/group.h>
 #include <bobcat_ui/window.h>
 
 namespace aiero {
     class Toolbar : public bobcat::Group {
-        bobcat::Window* _obj;
         aiero::Tool* _focusedTool;
         
         std::vector<aiero::Tool*> tools;
         
         void _init(int x, int y, int w, int h) {
-            _obj = new bobcat::Window(x, y, w, h, "");
-            _obj->end();
-            _obj->parent(nullptr);
+            // _obj = new bobcat::Window(x, y, w, h, ""); // derived classes will need to make it
+            _obj = nullptr;
         }
 
         void _sortItems() {
@@ -53,6 +52,9 @@ namespace aiero {
                 }
             }
         };
+
+        protected:
+            bobcat::Window* _obj; // needs to be passed to derived classes
         
         public:
             Toolbar() : Group(0, 0, 0, 0) {
@@ -62,6 +64,7 @@ namespace aiero {
             };
             
             Toolbar(int x, int y, int w, int h) : Group(x, y, w, h) {
+                _focusedTool = nullptr;
                 _init(x, y, w, h);
             };
 
@@ -78,8 +81,10 @@ namespace aiero {
             };
 
             void parent(bobcat::Window* newParent) {
-                _obj->parent(newParent);
-            }
+                newParent->add(_obj);
+            };
+
+            void color(Fl_Color flColor) { _obj->color(flColor); };
 
             void addItem(aiero::Tool* tool) {
                 tools.push_back(tool);

@@ -16,115 +16,121 @@
 #include <unordered_map>
 
 namespace aiero {
-    class MainWindowMenubar : public aiero::Menubar {
-        bobcat::MenuItem* viewMenuTabToolbar;
-        bobcat::MenuItem* viewMenuTabColorPicker;
-        bobcat::MenuItem* viewMenuTabSize;
-        bobcat::MenuItem* viewMenuTabLayers;
-        
-        bobcat::MenuItem* layerMenuTabDeleteShape;
-        bobcat::MenuItem* layerMenuTabBringLayerFront;
-        bobcat::MenuItem* layerMenuTabBringLayerBack;
-        bobcat::MenuItem* layerMenuTabBringLayerUp;
-        bobcat::MenuItem* layerMenuTabBringLayerDown;
-        
-        bobcat::MenuItem* editMenuTabUndo;
-        bobcat::MenuItem* editMenuTabRedo;
-        bobcat::MenuItem* editMenuTabDeleteCurrentLayer;
-        bobcat::MenuItem* editMenuTabDeleteClearCanvas;
+class MWMenubar : public aiero::Menubar {
+    bobcat::MenuItem *viewMenuTabToolbar;
+    bobcat::MenuItem *viewMenuTabColorPicker;
+    bobcat::MenuItem *viewMenuTabSize;
+    bobcat::MenuItem *viewMenuTabLayers;
 
-        std::unordered_map<bobcat::MenuItem*, bobcat::Widget*> linkedMenuItems;
+    bobcat::MenuItem *layerMenuTabDeleteShape;
+    bobcat::MenuItem *layerMenuTabBringLayerFront;
+    bobcat::MenuItem *layerMenuTabBringLayerBack;
+    bobcat::MenuItem *layerMenuTabBringLayerUp;
+    bobcat::MenuItem *layerMenuTabBringLayerDown;
 
-        void _onLinkVisibility(bobcat::Widget* menuItemClicked) {
-            if (linkedMenuItems.find((bobcat::MenuItem*) menuItemClicked) == linkedMenuItems.end()) return;
-            bobcat::Widget* menuWidget = linkedMenuItems[(bobcat::MenuItem*) menuItemClicked];
+    bobcat::MenuItem *editMenuTabUndo;
+    bobcat::MenuItem *editMenuTabRedo;
+    bobcat::MenuItem *editMenuTabDeleteCurrentLayer;
+    bobcat::MenuItem *editMenuTabDeleteClearCanvas;
 
-            _updateLinkVisibility((bobcat::MenuItem*) menuItemClicked, menuWidget);
-        };
+    std::unordered_map<bobcat::MenuItem *, bobcat::Widget *> linkedMenuItems;
 
-        void _updateLinkVisibility(bobcat::MenuItem* mitem, bobcat::Widget* menuWidget) {
-            if (menuWidget->visible()) {
-                mitem->color(FL_GREEN);
-                return;
-            }
-            
-            mitem->color(FL_BACKGROUND_COLOR);
+    void _onLinkVisibility(bobcat::Widget *menuItemClicked) {
+        if (linkedMenuItems.find((bobcat::MenuItem *)menuItemClicked) ==
+            linkedMenuItems.end())
+            return;
+        bobcat::Widget *menuWidget =
+            linkedMenuItems[(bobcat::MenuItem *)menuItemClicked];
+
+        _updateLinkVisibility((bobcat::MenuItem *)menuItemClicked, menuWidget);
+    };
+
+    void _updateLinkVisibility(bobcat::MenuItem *mitem,
+                               bobcat::Widget *menuWidget) {
+        if (menuWidget->visible()) {
+            mitem->color(FL_GREEN);
+            return;
         }
 
-        public:
-            MainWindowMenubar(int w, int h); // defined in source files
-            
-            void linkTabVisibility(bobcat::MenuItem* mitem, bobcat::Widget* widget) {
-                linkedMenuItems[mitem] = widget;
-                ON_CLICK(mitem, MainWindowMenubar::_onLinkVisibility);
-                _updateLinkVisibility(mitem, widget);
-            };
+        mitem->color(FL_BACKGROUND_COLOR);
+    }
+
+public:
+    MWMenubar(int w, int h); // defined in source files
+
+    void linkTabVisibility(bobcat::MenuItem *mitem, bobcat::Widget *widget) {
+        linkedMenuItems[mitem] = widget;
+        ON_CLICK(mitem, MWMenubar::_onLinkVisibility);
+        _updateLinkVisibility(mitem, widget);
     };
+};
 
-    class MainWindowSidePanel : public bobcat::Group {
-        bobcat::Window* colorPanelWindow;
-        bobcat::Window* sizePanelWindow;
-        bobcat::Window* layerPanelWindow;
+class MWSidePanel : public bobcat::Group {
+    bobcat::Window *colorPanelWindow;
+    bobcat::Window *sizePanelWindow;
+    bobcat::Window *layerPanelWindow;
 
-        public:
-            MainWindowSidePanel();
-            
-            // void bobcat::
+public:
+    MWSidePanel();
+
+    // void bobcat::
+};
+
+class MWToolbar : public aiero::Toolbar {
+    // bobcat::Window* _obj;
+    aiero::Tool *selectorTool;
+    aiero::Tool *paintBrushTool;
+    aiero::Tool *eraserTool;
+
+    // Shapes
+    aiero::Tool *circleTool;
+    aiero::Tool *pentagonTool;
+    aiero::Tool *rectangleTool;
+    aiero::Tool *starTool;
+    aiero::Tool *trapezoidTool;
+    aiero::Tool *triangleTool;
+
+public:
+    MWToolbar(int x, int y, int w, int h); // will be initialized in src
+};
+
+class MWDrawingCanvas : public aiero::Canvas {
+public:
+    MWDrawingCanvas(int x, int y, int w, int h) : Canvas(x, y, w, h) {
+        this->end();
     };
+};
 
-    class MainWindowToolbar : public aiero::Toolbar {
-        aiero::Tool* selectorTool;
-        aiero::Tool* paintBrushTool;
-        aiero::Tool* eraserTool;
+// class MainWindow : public bobcat::Group {
+//     int _x, _y, _w, _h;
 
-        // Shapes
-        aiero::Tool* circleTool;
-        aiero::Tool* pentagonTool;
-        aiero::Tool* rectangleTool;
-        aiero::Tool* starTool;
-        aiero::Tool* trapezoidTool;
-        aiero::Tool* triangleTool;
+//     bobcat::Window* _obj;
+//     MainWindowMenubar _toolBar;
 
-        public:
-            MainWindowToolbar(int x, int y, int w, int h); // will be initialized in src
-    };
+//     void _init() {
+//         _obj = new bobcat::Window(_x, _y, _w, _h, "Main Window");
+//     };
 
-    class MainDrawingCanvas : public aiero::Canvas {
-        public:
-            MainDrawingCanvas(int x, int y, int w, int h) : Canvas(x, y, w, h) {
-                
-            };
-    };
-    
-    // class MainWindow : public bobcat::Group {
-    //     int _x, _y, _w, _h;
-        
-    //     bobcat::Window* _obj;
-    //     MainWindowMenubar _toolBar;
+//     public:
+//         MainWindow(int x, int y, int w, int h) : Group(x, y, w, h),
+//         _toolBar(w, h) {
+//             _x = x;
+//             _y = y;
+//             _w = w;
+//             _h = h;
 
-    //     void _init() {
-    //         _obj = new bobcat::Window(_x, _y, _w, _h, "Main Window");
-    //     };
+//             _init();
 
-    //     public:
-    //         MainWindow(int x, int y, int w, int h) : Group(x, y, w, h), _toolBar(w, h) {
-    //             _x = x;
-    //             _y = y;
-    //             _w = w;
-    //             _h = h;
-                
-    //             _init();
-                
-    //             Fl_Group::add(_obj);
-    //         };
+//             Fl_Group::add(_obj);
+//         };
 
-    //         void show() { _obj->show(); };
-    //         void hide() { _obj->hide(); };
-    //         void add(bobcat::Widget* sender) {
-    //             Fl_Group::add(sender);
-    //             _obj->add(sender);
-    //         };
-    // };
-}
+//         void show() { _obj->show(); };
+//         void hide() { _obj->hide(); };
+//         void add(bobcat::Widget* sender) {
+//             Fl_Group::add(sender);
+//             _obj->add(sender);
+//         };
+// };
+} // namespace aiero
 
 #endif

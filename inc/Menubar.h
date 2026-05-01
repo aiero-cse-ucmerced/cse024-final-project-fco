@@ -19,8 +19,7 @@ namespace aiero {
         
         public:
             Menubar(int w, int h) : Group(0, 0, w, h) {
-                _obj = new bobcat::Menu();       
-                _obj->parent(nullptr);     
+                _obj = new bobcat::Menu();
             };
 
             ~Menubar() {
@@ -30,14 +29,14 @@ namespace aiero {
                 _items.clear();
 
                 delete _obj;
-            }
+            };
 
             bobcat::MenuItem* operator[](int index) {
                 if ((int) _items.size()-1 < index+1) throw "Non existent index";
                 return _items[index];
             };
 
-            bobcat::MenuItem* operator[](const std::string menuName) {
+            bobcat::MenuItem* operator[](const std::string& menuName) {
                 for (bobcat::MenuItem* mitem : _items) {
                     if (mitem->label() == menuName)
                         return mitem;
@@ -57,7 +56,7 @@ namespace aiero {
                 
                 return mitem;
             };
-
+            
             void parent(bobcat::Window* par) { _obj->parent(par); };
             
     };

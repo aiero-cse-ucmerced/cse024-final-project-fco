@@ -25,6 +25,7 @@ class Canvas : public bobcat::Canvas_ {
 public:
     Canvas(int x, int y, int w, int h) : Canvas_(x, y, w, h) {
         selectedShape = nullptr;
+        this->end();
     };
 
     void clear();

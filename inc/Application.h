@@ -12,9 +12,9 @@
 class Application : public bobcat::Application_ {
     bobcat::Window* mainWindow;
 
-    aiero::MainDrawingCanvas* drawingCanvas;
-    aiero::MainWindowMenubar* mainWindowMenuBar;
-    aiero::MainWindowToolbar* mainWindowToolBar;
+    aiero::MWDrawingCanvas* drawingCanvas;
+    aiero::MWMenubar* mainWindowMenuBar;
+    aiero::MWToolbar* mainWindowToolBar;
 public:
     Application();
 };
