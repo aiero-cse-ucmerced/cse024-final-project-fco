@@ -41,22 +41,8 @@ Application::Application() {
       cout << "The error says: " << err << endl;  
     }
 
-    ON_MOUSE_UP(drawingCanvas, Application::onCanvasMouseUp);
-    ON_MOUSE_DOWN(drawingCanvas, Application::onCanvasMouseDown);
-    ON_DRAG(drawingCanvas, Application::onCanvasMouseDrag);
+    mainWindow->add(drawingCanvas);
+    drawingCanvas->initEvents();
+    
     mainWindow->show();
 }
-
-// Canvas event handlers
-void Application::onCanvasMouseDown(bobcat::Widget* sender, float x, float y) {
-  std::cout << "what? 1\n";
-  drawingCanvas->onMouseDownEvent(sender, x, y);
-};
-void Application::onCanvasMouseUp(bobcat::Widget* sender, float x, float y) {
-  std::cout << "what? 2\n";
-  drawingCanvas->onMouseUpEvent(sender, x, y);
-};
-void Application::onCanvasMouseDrag(bobcat::Widget* sender, float x, float y) {
-  std::cout << "what? 3\n";
-  drawingCanvas->onMouseDragEvent(sender, x, y);
-};

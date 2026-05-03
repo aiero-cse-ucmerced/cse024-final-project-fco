@@ -15,11 +15,6 @@ class Application : public bobcat::Application_ {
     aiero::MWSidePanel *sidePanel;
     aiero::MWMenubar *menuBar;
     aiero::MWToolbar *toolBar;
-
-    // canvas events
-    void onCanvasMouseDown(bobcat::Widget* sender, float x, float y);
-    void onCanvasMouseUp(bobcat::Widget* sender, float x, float y);
-    void onCanvasMouseDrag(bobcat::Widget* sender, float x, float y);
 public:
     Application();
 };
