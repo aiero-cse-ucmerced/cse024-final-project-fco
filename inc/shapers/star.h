@@ -19,7 +19,8 @@ class StarTool : public aiero::Tool {
         };
 
         // optional
-        void onClick(float x, float y) override;
+        void onMouseDown(float x, float y) override;
+        void onMouseUp(float x, float y) override;
 
         // required
         void _activate() override {};

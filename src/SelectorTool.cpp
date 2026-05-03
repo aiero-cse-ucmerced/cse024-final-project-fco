@@ -3,6 +3,13 @@
 
 #include "tools/selector.h"
 
+using namespace std;
+
 void SelectorTool::onClick(float x, float y) {
-    // cout << "what";
+    cout << "selector tool triggered?";
 }
+
+void SelectorTool::onClick(float x, float y) {
+    cout << "selector tool triggered?";
+}
+

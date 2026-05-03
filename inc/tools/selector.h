@@ -24,9 +24,8 @@ class SelectorTool : public aiero::Tool {
         };
 
         // optional
-        void onClick(float x, float y) override;
-        // void onMouseDown(float x, float y) override;
-        // void onMouseUp(float x, float y) override;
+        void onMouseDown(float x, float y) override;
+        void onMouseUp(float x, float y) override;
 
         // required
         // LEAD TEAM NOTE: images cannot be colored due to FLTK limitations; thus, we will highlight the tool by changing its box frame.
