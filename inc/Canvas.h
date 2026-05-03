@@ -55,30 +55,35 @@ namespace aiero {
         
         // event handlers
         void _onMouseUpEventCb(bobcat::Widget* sender, float mouseX, float mouseY) {
+            std::cout << "internal mouse up event cb" << std::endl;
             onMouseUpEvent(sender, mouseX, mouseY);
         };
         void _onMouseDownEventCb(bobcat::Widget* sender, float mouseX, float mouseY) {
+            std::cout << "internal mouse down event cb" << std::endl;
             onMouseDownEvent(sender, mouseX, mouseY);
         };
         void _onMouseDragEventCb(bobcat::Widget* sender, float mouseX, float mouseY) {
+            std::cout << "internal mouse drag event cb" << std::endl;
             onMouseDragEvent(sender, mouseX, mouseY);
         };
         
+
+    protected:
         virtual void onMouseUpEvent(bobcat::Widget* sender, float mouseX, float mouseY) {};
         virtual void onMouseDownEvent(bobcat::Widget* sender, float mouseX, float mouseY) {};
         virtual void onMouseDragEvent(bobcat::Widget* sender, float mouseX, float mouseY) {};
-
-    protected:
         aiero::Toolbar* toolbar;
     public:
         Canvas(int x, int y, int w, int h) : Canvas_(x, y, w, h) {
             selectedShape = nullptr;
             toolbar = nullptr; // need to be initialized by the derived class
             _focusedLayerIndex = -1;
-            
-            ON_MOUSE_UP(this, Canvas::_onMouseUpEventCb);
-            ON_MOUSE_DOWN(this, Canvas::_onMouseDownEventCb);
-            ON_DRAG(this, Canvas::_onMouseDragEventCb);
+        };
+
+        void initEvents() {
+            ON_MOUSE_UP(this, aiero::Canvas::_onMouseUpEventCb);
+            ON_MOUSE_DOWN(this, aiero::Canvas::_onMouseDownEventCb);
+            ON_DRAG(this, aiero::Canvas::_onMouseDragEventCb);
         };
 
         // layer system
@@ -104,6 +109,7 @@ namespace aiero {
         void deleteShape(Shape* shape);
         void deleteObjectsFromMousePosition(float mx, float my);
         
+
         // required
         void render() {
             // const int x = 0;

@@ -121,23 +121,30 @@ namespace aiero {
     };
 
     class MWDrawingCanvas : public aiero::Canvas {
+    public:
         void onMouseUpEvent(bobcat::Widget* sender, float mouseX, float mouseY) override {
-            const aiero::Tool* focusedTool = toolbar->focusedTool();
-            if (focusedTool == nullptr) return;
-            
             std::cout << "mouse up on canvas" << std::endl;
+            aiero::Tool* focusedTool = toolbar->focusedTool();
+            if (focusedTool == nullptr) return;
+
+            focusedTool->onMouseDownCb(mouseX, mouseY);
+            
         };
         void onMouseDownEvent(bobcat::Widget* sender, float mouseX, float mouseY) override {
-            const aiero::Tool* focusedTool = toolbar->focusedTool();
+            std::cout << "mouse down on canvas" << std::endl;
+            aiero::Tool* focusedTool = toolbar->focusedTool();
             if (focusedTool == nullptr) return;
             
-            tool->onClickCb(mouseX, mouseY);
-            std::cout << "mouse down on canvas" << std::endl;
+            focusedTool->onMouseDownCb(mouseX, mouseY);
         };
         void onMouseDragEvent(bobcat::Widget* sender, float mouseX, float mouseY) override {
+            std::cout << "mouse drag on canvas" << std::endl;
+            aiero::Tool* focusedTool = toolbar->focusedTool();
+            if (focusedTool == nullptr) return;
             
+            focusedTool->onMouseDragCb(mouseX, mouseY);
         };
-    public:
+        
         MWDrawingCanvas(int x, int y, int w, int h, aiero::Toolbar* tb) : Canvas(x, y, w, h) {
             toolbar = tb;
             this->end();
