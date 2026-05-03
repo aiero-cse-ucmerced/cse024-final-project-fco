@@ -8,6 +8,7 @@
 - @vainavichez
 - @TheLegendarySpark
 
+Icons are taken from Google's Material Icons https://fonts.google.com/icons
 
 ---
 
