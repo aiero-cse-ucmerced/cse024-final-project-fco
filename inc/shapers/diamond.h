@@ -7,11 +7,32 @@
 #include "../Enums.h"
 #include "../Tool.h"
 
+#include "../Shape.h"
+
+class Diamond : public Shape {
+    public:
+        Diamond();
+        ~Diamond() {
+
+        };
+        
+        void draw() override {
+            
+        };
+        
+        bool checkMouseBounds(float mouseX, float mouseY) const override {
+            return false;
+        };
+
+};
+
 class DiamondTool : public aiero::Tool {
     TOOL _name = SHAPE_DIAMOND;
 
 public:
-    DiamondTool();
+    DiamondTool() {
+        // TODO
+    };
 
     // optional
     void onClick(int x, int y) override;

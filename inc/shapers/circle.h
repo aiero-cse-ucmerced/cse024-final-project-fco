@@ -31,7 +31,7 @@ class CircleTool : public aiero::Tool {
 
 public:
     CircleTool() {
-        // change whatever
+        // TODO
     };;
 
     // optional

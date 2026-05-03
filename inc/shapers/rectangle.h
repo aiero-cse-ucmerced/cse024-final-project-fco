@@ -8,13 +8,15 @@
 #include "../Tool.h"
 #include "../Enums.h"
 
+#include "../Shape.h"
+
 class RectangleTool : public aiero::Tool {
     TOOL _name = SHAPE_RECTANGLE;
 
     public:
         RectangleTool() {
             // change whatever
-        };;
+        };
 
         // optional
         void onClick(int x, int y) override;

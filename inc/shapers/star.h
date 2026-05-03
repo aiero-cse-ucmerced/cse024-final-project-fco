@@ -8,13 +8,15 @@
 #include "../Tool.h"
 #include "../Enums.h"
 
+#include "../Shape.h"
+
 class StarTool : public aiero::Tool {
     TOOL _name = SHAPE_STAR;
 
     public:
         StarTool() {
             // change whatever
-        };;
+        };
 
         // optional
         void onClick(int x, int y) override;

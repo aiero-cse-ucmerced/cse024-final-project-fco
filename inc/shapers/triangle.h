@@ -8,13 +8,15 @@
 #include "../Tool.h"
 #include "../Enums.h"
 
+#include "../Shape.h"
+
 class TriangleTool : public aiero::Tool {
     TOOL _name = SHAPE_TRIANGLE;
 
     public:
         TriangleTool() {
-        // change whatever
-    };;
+            // change whatever
+        };
 
         // optional
         void onClick(int x, int y) override;

@@ -8,12 +8,14 @@
 #include "../Tool.h"
 #include "../Enums.h"
 
+#include "../Shape.h"
+
 class PentagonTool : public aiero::Tool {
     TOOL _name = SHAPE_PENTAGON;
 
 public:
-    PentagonTool() {
-        // change whatever
+    PentagonTool()  {
+        // TODO
     };
 
     // optional
