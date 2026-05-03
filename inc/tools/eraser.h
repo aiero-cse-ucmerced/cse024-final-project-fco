@@ -11,7 +11,12 @@ class EraserTool : public aiero::Tool {
     TOOL _name = ERASER;
 
     public:
-        EraserTool();
+        EraserTool() {
+            _obj = new bobcat::Button(0, 0, 45, 45, "");
+            _obj->box(FL_NO_BOX); // no background
+            _obj->image(new Fl_PNG_Image("assets/eraser.png"));
+            _obj->align(FL_ALIGN_IMAGE_BACKDROP); // necessary for image to align center
+        };
 
         // optional
         void onClick(int x, int y) override;
