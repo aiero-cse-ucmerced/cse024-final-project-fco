@@ -11,7 +11,7 @@
 #include "shapers/pentagon.h"
 #include "shapers/rectangle.h"
 #include "shapers/star.h"
-#include "shapers/trapezoid.h"
+#include "shapers/diamond.h"
 #include "shapers/triangle.h"
 
 #endif

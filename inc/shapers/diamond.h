@@ -1,20 +1,17 @@
 // AIERO-FINAL-PROJECT-FCO FILE (Do not remove tag)
 // Refer to aiero.space/final-project-fco
 
+#ifndef DIAMOND_H
+#define DIAMOND_H
 
-#ifndef PENTAGON_H
-#define PENTAGON_H
-
-#include "../Tool.h"
 #include "../Enums.h"
+#include "../Tool.h"
 
-class PentagonTool : public aiero::Tool {
-    TOOL _name = SHAPE_PENTAGON;
+class DiamondTool : public aiero::Tool {
+    TOOL _name = SHAPE_TRAPEZOID;
 
 public:
-    PentagonTool() {
-        // change whatever
-    };
+    DiamondTool();
 
     // optional
     void onClick(int x, int y) override;

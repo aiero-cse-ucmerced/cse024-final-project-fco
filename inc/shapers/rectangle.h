@@ -12,7 +12,9 @@ class RectangleTool : public aiero::Tool {
     TOOL _name = SHAPE_RECTANGLE;
 
     public:
-        RectangleTool();
+        RectangleTool() {
+            // change whatever
+        };;
 
         // optional
         void onClick(int x, int y) override;

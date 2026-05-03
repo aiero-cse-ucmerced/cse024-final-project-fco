@@ -11,6 +11,7 @@
 #include <FL/Fl_Group.H>
 #include <bobcat_ui/group.h>
 #include <bobcat_ui/window.h>
+#include <string>
 
 namespace aiero {
     class Toolbar : public bobcat::Group {
@@ -81,20 +82,30 @@ namespace aiero {
             };
 
             void parent(bobcat::Window* newParent) {
+                if (_obj == nullptr) throw "Toolbar window was not created during initialization";
                 newParent->add(_obj);
             };
 
-            void color(Fl_Color flColor) { _obj->color(flColor); };
+            void color(Fl_Color flColor) {
+                if (_obj == nullptr) throw "Toolbar window was not created during initialization";
+                _obj->color(flColor);
+            };
 
             void addItem(aiero::Tool* tool) {
+                if (_obj == nullptr) throw "Toolbar window was not created during initialization";
+                if (tool->obj() == nullptr) throw "Tool " + std::to_string(tool->name()) + " object was not created during initialization";
+                
                 tools.push_back(tool);
-                Fl_Group::add(tool->obj());
                 
-                tool->obj()->parent(_obj);
+                // std::cout << "1" << std::endl;
+                bobcat::Group::add(tool->obj());
+                
+                _obj->add(tool->obj());
+                // std::cout << "2" << std::endl;
                 ON_CLICK(tool->obj(), Toolbar::_onClickEvent);
+                // std::cout << "3" << std::endl;
                 
-                _sortItems();
-                _obj->redraw();
+                // _sortItems();
             };
 
             const bobcat::Window* obj() const { return _obj; };

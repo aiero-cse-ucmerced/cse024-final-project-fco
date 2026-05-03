@@ -39,26 +39,40 @@ class MWMenubar : public aiero::Menubar {
         if (linkedMenuItems.find((bobcat::MenuItem *)menuItemClicked) ==
             linkedMenuItems.end())
             return;
-        bobcat::Widget *menuWidget =
-            linkedMenuItems[(bobcat::MenuItem *)menuItemClicked];
+
+        std::cout << "onlink triggered" << std::endl;
+        
+        bobcat::Widget *menuWidget = linkedMenuItems[(bobcat::MenuItem *)menuItemClicked];
+
+        if (menuWidget->visible())
+            menuWidget->hide();
+        else menuWidget->show();
 
         _updateLinkVisibility((bobcat::MenuItem *)menuItemClicked, menuWidget);
+        std::cout << "onlink updated visibility" << std::endl;
     };
 
     void _updateLinkVisibility(bobcat::MenuItem *mitem,
                                bobcat::Widget *menuWidget) {
         if (menuWidget->visible()) {
-            mitem->color(FL_GREEN);
+            // std::cout << "color green" << std::endl;
+            // mitem->color(FL_GREEN);
+            // mitem->label("a " + mitem->label());
+            mitem->redraw();
             return;
         }
 
-        mitem->color(FL_BACKGROUND_COLOR);
+        std::cout << "color grey" << std::endl;
+        // mitem->color(FL_BACKGROUND_COLOR);
+        // mitem->label(mitem->label().substr(2, mitem->label().length()-3));
+        mitem->redraw();
     }
 
 public:
     MWMenubar(int w, int h); // defined in source files
 
     void linkTabVisibility(bobcat::MenuItem *mitem, bobcat::Widget *widget) {
+        if (linkedMenuItems.find(mitem) != linkedMenuItems.end()) throw mitem->label() + " menu item is already linked to a widget";
         linkedMenuItems[mitem] = widget;
         ON_CLICK(mitem, MWMenubar::_onLinkVisibility);
         _updateLinkVisibility(mitem, widget);
@@ -66,13 +80,25 @@ public:
 };
 
 class MWSidePanel : public bobcat::Group {
-    bobcat::Window *colorPanelWindow;
-    bobcat::Window *sizePanelWindow;
-    bobcat::Window *layerPanelWindow;
+    bobcat::Window* sidePanel;
+    
+    bobcat::Window* colorPanelWindow;
+    bobcat::Window* sizePanelWindow;
+    bobcat::Window* layerPanelWindow;
 
 public:
-    MWSidePanel();
+    MWSidePanel(int x, int y, int w, int h);
 
+    bobcat::Window* operator[](const std::string &subWindow) {
+        if (subWindow == "Color") return colorPanelWindow;
+        if (subWindow == "Size") return sizePanelWindow;
+        if (subWindow == "Layers") return layerPanelWindow;
+        
+        throw subWindow + " does not exist as a frame of the side panel";
+    }
+
+    void parent(bobcat::Window* newParent) { newParent->add(sidePanel); };
+    void color(Fl_Color flColor) { bobcat::Group::color(flColor); sidePanel->redraw(); };
     // void bobcat::
 };
 

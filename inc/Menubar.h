@@ -32,7 +32,7 @@ namespace aiero {
             };
 
             bobcat::MenuItem* operator[](int index) {
-                if ((int) _items.size()-1 < index+1) throw "Non existent index";
+                if ((int) _items.size()-1 < index) throw "Non existent index";
                 return _items[index];
             };
 
@@ -42,7 +42,7 @@ namespace aiero {
                         return mitem;
                 }
                 
-                throw "Non existent menu item " + menuName;
+                throw menuName + " does not exist as a menu item";
             };
 
             bobcat::MenuItem* addItem(std::string itemName) {

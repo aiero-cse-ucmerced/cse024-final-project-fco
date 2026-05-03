@@ -21,7 +21,6 @@ namespace aiero {
 
         double _size;
         
-        bobcat::Button* _obj; // derived class is expected to make this
 
         virtual void onClick(int x, int y) {};
         virtual void onMouseDown(int x, int y) {};
@@ -31,8 +30,14 @@ namespace aiero {
         virtual void _activate() = 0;
         virtual void _deactivate() = 0;
 
+        protected:
+            bobcat::Button* _obj; // derived class is expected to make this
+
         public:
-            Tool();
+            Tool() {
+                // do nothing
+                _obj = nullptr; // make sure this occurs
+            };
 
             TOOL name() const { return _name; };
             void name(TOOL tlname) { _name = tlname; };
@@ -42,7 +47,7 @@ namespace aiero {
             bobcat::Button* obj() const { return _obj; };
             bobcat::Button* object() const { return _obj; };
 
-            virtual ~Tool() { delete _obj; };
+            virtual ~Tool() { if (_obj == nullptr) return; delete _obj; };
 
             bool active() const { return _active; };
 

@@ -1,17 +1,22 @@
 // AIERO-FINAL-PROJECT-FCO FILE (Do not remove tag)
 // Refer to aiero.space/final-project-fco
 
-#ifndef ERASER_H
-#define ERASER_H
+#ifndef SELECTOR_H
+#define SELECTOR_H
 
 #include "../Enums.h"
 #include "../Tool.h"
+#include <FL/Fl_PNG_Image.H>
+#include <bobcat_ui/button.h>
 
 class SelectorTool : public aiero::Tool {
     TOOL _name = SELECTOR;
 
     public:
-        SelectorTool();
+        SelectorTool() {
+            _obj = new bobcat::Button(0, 0, 45, 45, "selector");
+            _obj->image(new Fl_PNG_Image(""));
+        };
 
         // optional
         void onClick(int x, int y) override;

@@ -30,7 +30,9 @@ class CircleTool : public aiero::Tool {
     TOOL _name = SHAPE_CIRCLE;
 
 public:
-    CircleTool();
+    CircleTool() {
+        // change whatever
+    };;
 
     // optional
     void onClick(int x, int y) override;

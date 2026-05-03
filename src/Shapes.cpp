@@ -4,6 +4,7 @@
 #include "Point.h"
 #include "Tools.h"
 #include "shapers/circle.h"
+#include "shapers/pentagon.h"
 
 void Point::draw() {
 
@@ -12,3 +13,19 @@ void Point::draw() {
 Circle::Circle() {
     
 }
+
+// Pentagon::Pentagon() {
+    
+// }
+// Circle::Circle() {
+    
+// }
+// Circle::Circle() {
+    
+// }
+// Circle::Circle() {
+    
+// }
+// Circle::Circle() {
+    
+// }

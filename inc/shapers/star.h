@@ -12,7 +12,9 @@ class StarTool : public aiero::Tool {
     TOOL _name = SHAPE_STAR;
 
     public:
-        StarTool();
+        StarTool() {
+            // change whatever
+        };;
 
         // optional
         void onClick(int x, int y) override;
