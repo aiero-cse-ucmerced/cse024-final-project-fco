@@ -19,6 +19,10 @@ public:
         _x = 0.0;
         _y = 0.0;
     };
+
+    Shape(const Shape& parent) : _color(parent.color()) {
+
+    };
     
     virtual void color(Color newColor) {
         _color = newColor;

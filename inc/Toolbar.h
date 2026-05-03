@@ -35,11 +35,14 @@ namespace aiero {
             _obj->redraw();
         };
 
-        virtual void _onClickEvent(bobcat::Widget* sender) {
+        void _onClickEvent(bobcat::Widget* sender) {
+            sender->clear_visible_focus();
             if (_focusedTool != nullptr && _focusedTool->obj() == sender) return;
             
-            if (_focusedTool)
+            if (_focusedTool) {
                 _focusedTool->deActivate();
+                std::cout << "focused tool deactivated" << std::endl;
+            }
 
             _focusedTool = nullptr;
 

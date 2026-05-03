@@ -50,25 +50,27 @@ MWMenubar::MWMenubar(int w, int h) : Menubar(w, h) {
 
 MWToolbar::MWToolbar(int x, int y, int w, int h) {
     _obj = new bobcat::Window(x, y, w, h, "");
+    // _obj->box(FL_NO_BOX);
     _obj->end();
 
     // Core tools
     selectorTool = new SelectorTool();
-    // paintBrushTool = new PaintBrushTool();
-    // eraserTool = new EraserTool();
+    eraserTool = new EraserTool();
+    paintBrushTool = new PaintBrushTool();
 
     // Shapers
-    // circleTool = new CircleTool();
-    // pentagonTool = new PentagonTool();
-    // rectangleTool = new RectangleTool();
-    // starTool = new StarTool();
-    // trapezoidTool = new TrapezoidTool();
-    // triangleTool = new TriangleTool();
+    circleTool = new CircleTool();
+    pentagonTool = new PentagonTool();
+    rectangleTool = new RectangleTool();
+    starTool = new StarTool();
+    diamondTool = new DiamondTool();
+    triangleTool = new TriangleTool();
+    
     addItem(selectorTool);
-    // addItem(paintBrushTool);
-    // addItem(eraserTool);
+    addItem(eraserTool);
+    addItem(paintBrushTool);
+
     // addItem(circleTool);
-    // addItem();
 }
 
 MWSidePanel::MWSidePanel(int x, int y, int w, int h)
@@ -77,18 +79,21 @@ MWSidePanel::MWSidePanel(int x, int y, int w, int h)
     sidePanel->color(FL_GREEN);
 
     colorPanelWindow = new Window(0, 0, w, h * 0.4);
+    colorPanelWindow->box(FL_BORDER_BOX);
     // TEAM TODO: create the implementation here
     // colorPanelWindow->color(sidePanel->color());
+    
     colorPanelWindow->end();
 
     sizePanelWindow = new Window(0, colorPanelWindow->h(), w, h * 0.25);
-    // sizePanelWindow->color(sidePanel->color());
+    sizePanelWindow->box(FL_BORDER_BOX);
     // TEAM TODO: create the implementation here
+    
     sizePanelWindow->end();
 
     layerPanelWindow =
         new Window(0, sizePanelWindow->y() + sizePanelWindow->h(), w, h * 0.35);
-    // layerPanelWindow->color(sidePanel->color());
+    layerPanelWindow->box(FL_BORDER_BOX);
     // TEAM TODO: create the implementation here
     layerPanelWindow->end();
 

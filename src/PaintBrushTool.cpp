@@ -3,6 +3,6 @@
 
 #include "tools/paintbrush.h"
 
-void PaintBrushTool::onClick(int x, int y) {
+void PaintBrushTool::onClick(float x, float y) {
     
 }

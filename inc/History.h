@@ -20,6 +20,7 @@ namespace aiero {
     template <typename A>
     class History {
         int _index;
+        int maxRecord;
         
         std::vector<Record<A>> list;
 
@@ -28,6 +29,7 @@ namespace aiero {
     public:
         History() {
             _index = -1;
+            maxRecord = 10;
         };
         
         ~History() {
@@ -75,6 +77,10 @@ namespace aiero {
             if (_index < latestIndex) {
                 // Overwrite older records from the current index
                 list.erase(list.begin()+_index+1, list.end());
+            }
+
+            if (_length()+1 > maxRecord) {
+                list.erase(list.begin());
             }
 
             _index += 1;            

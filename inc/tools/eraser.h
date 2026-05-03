@@ -19,9 +19,9 @@ class EraserTool : public aiero::Tool {
         };
 
         // optional
-        void onClick(int x, int y) override;
-        // void onMouseDown(int x, int y) override;
-        // void onMouseUp(int x, int y) override;
+        void onClick(float x, float y) override;
+        // void onMouseDown(float x, float y) override;
+        // void onMouseUp(float x, float y) override;
 
         // required
         void _activate() override {

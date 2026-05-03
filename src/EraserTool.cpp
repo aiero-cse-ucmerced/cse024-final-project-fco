@@ -3,6 +3,6 @@
 
 #include "tools/eraser.h"
 
-void EraserTool::onClick(int x, int y) {
+void EraserTool::onClick(float x, float y) {
     
 }

@@ -3,6 +3,6 @@
 
 #include "tools/selector.h"
 
-void SelectorTool::onClick(int x, int y) {
+void SelectorTool::onClick(float x, float y) {
     // cout << "what";
 }

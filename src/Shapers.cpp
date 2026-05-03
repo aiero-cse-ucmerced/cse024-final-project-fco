@@ -4,26 +4,26 @@
 
 #include "Shapers.h"
 
-void CircleTool::onClick(int x, int y) {
+void CircleTool::onClick(float x, float y) {
     
 }
 
-void PentagonTool::onClick(int x, int y) {
+void PentagonTool::onClick(float x, float y) {
     
 }
 
-void RectangleTool::onClick(int x, int y) {
+void RectangleTool::onClick(float x, float y) {
     
 }
 
-void StarTool::onClick(int x, int y) {
+void StarTool::onClick(float x, float y) {
     
 }
 
-void DiamondTool::onClick(int x, int y) {
+void DiamondTool::onClick(float x, float y) {
     
 }
 
-void TriangleTool::onClick(int x, int y) {
+void TriangleTool::onClick(float x, float y) {
     
 }

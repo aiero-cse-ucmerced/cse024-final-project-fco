@@ -16,147 +16,133 @@
 #include <unordered_map>
 
 namespace aiero {
-class MWMenubar : public aiero::Menubar {
-    bobcat::MenuItem *viewMenuTabToolbar;
-    bobcat::MenuItem *viewMenuTabColorPicker;
-    bobcat::MenuItem *viewMenuTabSize;
-    bobcat::MenuItem *viewMenuTabLayers;
+    class MWMenubar : public aiero::Menubar {
+        bobcat::MenuItem *viewMenuTabToolbar;
+        bobcat::MenuItem *viewMenuTabColorPicker;
+        bobcat::MenuItem *viewMenuTabSize;
+        bobcat::MenuItem *viewMenuTabLayers;
 
-    bobcat::MenuItem *layerMenuTabDeleteShape;
-    bobcat::MenuItem *layerMenuTabBringLayerFront;
-    bobcat::MenuItem *layerMenuTabBringLayerBack;
-    bobcat::MenuItem *layerMenuTabBringLayerUp;
-    bobcat::MenuItem *layerMenuTabBringLayerDown;
+        bobcat::MenuItem *layerMenuTabDeleteShape;
+        bobcat::MenuItem *layerMenuTabBringLayerFront;
+        bobcat::MenuItem *layerMenuTabBringLayerBack;
+        bobcat::MenuItem *layerMenuTabBringLayerUp;
+        bobcat::MenuItem *layerMenuTabBringLayerDown;
 
-    bobcat::MenuItem *editMenuTabUndo;
-    bobcat::MenuItem *editMenuTabRedo;
-    bobcat::MenuItem *editMenuTabDeleteCurrentLayer;
-    bobcat::MenuItem *editMenuTabDeleteClearCanvas;
+        bobcat::MenuItem *editMenuTabUndo;
+        bobcat::MenuItem *editMenuTabRedo;
+        bobcat::MenuItem *editMenuTabDeleteCurrentLayer;
+        bobcat::MenuItem *editMenuTabDeleteClearCanvas;
 
-    std::unordered_map<bobcat::MenuItem *, bobcat::Widget *> linkedMenuItems;
+        std::unordered_map<bobcat::MenuItem *, bobcat::Widget *> linkedMenuItems;
 
-    void _onLinkVisibility(bobcat::Widget *menuItemClicked) {
-        if (linkedMenuItems.find((bobcat::MenuItem *)menuItemClicked) ==
-            linkedMenuItems.end())
-            return;
+        void _onLinkVisibility(bobcat::Widget *menuItemClicked) {
+            if (linkedMenuItems.find((bobcat::MenuItem *)menuItemClicked) ==
+                linkedMenuItems.end())
+                return;
 
-        std::cout << "onlink triggered" << std::endl;
-        
-        bobcat::Widget *menuWidget = linkedMenuItems[(bobcat::MenuItem *)menuItemClicked];
+            std::cout << "onlink triggered" << std::endl;
+            
+            bobcat::Widget *menuWidget = linkedMenuItems[(bobcat::MenuItem *)menuItemClicked];
 
-        if (menuWidget->visible())
-            menuWidget->hide();
-        else menuWidget->show();
+            if (menuWidget->visible())
+                menuWidget->hide();
+            else menuWidget->show();
 
-        _updateLinkVisibility((bobcat::MenuItem *)menuItemClicked, menuWidget);
-        std::cout << "onlink updated visibility" << std::endl;
-    };
+            _updateLinkVisibility((bobcat::MenuItem *)menuItemClicked, menuWidget);
+            std::cout << "onlink updated visibility" << std::endl;
+        };
 
-    void _updateLinkVisibility(bobcat::MenuItem *mitem,
-                               bobcat::Widget *menuWidget) {
-        if (menuWidget->visible()) {
-            // std::cout << "color green" << std::endl;
-            // mitem->color(FL_GREEN);
-            // mitem->label("a " + mitem->label());
+        void _updateLinkVisibility(bobcat::MenuItem *mitem,
+                                bobcat::Widget *menuWidget) {
+            if (menuWidget->visible()) {
+                // std::cout << "color green" << std::endl;
+                // mitem->color(FL_GREEN);
+                // mitem->label("a " + mitem->label());
+                mitem->redraw();
+                return;
+            }
+
+            std::cout << "color grey" << std::endl;
+            // mitem->color(FL_BACKGROUND_COLOR);
+            // mitem->label(mitem->label().substr(2, mitem->label().length()-3));
             mitem->redraw();
-            return;
         }
 
-        std::cout << "color grey" << std::endl;
-        // mitem->color(FL_BACKGROUND_COLOR);
-        // mitem->label(mitem->label().substr(2, mitem->label().length()-3));
-        mitem->redraw();
-    }
+    public:
+        MWMenubar(int w, int h); // defined in source files
 
-public:
-    MWMenubar(int w, int h); // defined in source files
-
-    void linkTabVisibility(bobcat::MenuItem *mitem, bobcat::Widget *widget) {
-        if (linkedMenuItems.find(mitem) != linkedMenuItems.end()) throw mitem->label() + " menu item is already linked to a widget";
-        linkedMenuItems[mitem] = widget;
-        ON_CLICK(mitem, MWMenubar::_onLinkVisibility);
-        _updateLinkVisibility(mitem, widget);
+        void linkTabVisibility(bobcat::MenuItem *mitem, bobcat::Widget *widget) {
+            if (linkedMenuItems.find(mitem) != linkedMenuItems.end()) throw mitem->label() + " menu item is already linked to a widget";
+            linkedMenuItems[mitem] = widget;
+            ON_CLICK(mitem, MWMenubar::_onLinkVisibility);
+            _updateLinkVisibility(mitem, widget);
+        };
     };
-};
 
-class MWSidePanel : public bobcat::Group {
-    bobcat::Window* sidePanel;
-    
-    bobcat::Window* colorPanelWindow;
-    bobcat::Window* sizePanelWindow;
-    bobcat::Window* layerPanelWindow;
-
-public:
-    MWSidePanel(int x, int y, int w, int h);
-
-    bobcat::Window* operator[](const std::string &subWindow) {
-        if (subWindow == "Color") return colorPanelWindow;
-        if (subWindow == "Size") return sizePanelWindow;
-        if (subWindow == "Layers") return layerPanelWindow;
+    class MWSidePanel : public bobcat::Group {
+        bobcat::Window* sidePanel;
         
-        throw subWindow + " does not exist as a frame of the side panel";
-    }
+        bobcat::Window* colorPanelWindow;
+        bobcat::Window* sizePanelWindow;
+        bobcat::Window* layerPanelWindow;
 
-    void parent(bobcat::Window* newParent) { newParent->add(sidePanel); };
-    void color(Fl_Color flColor) { bobcat::Group::color(flColor); sidePanel->redraw(); };
-    // void bobcat::
-};
+    public:
+        MWSidePanel(int x, int y, int w, int h);
 
-class MWToolbar : public aiero::Toolbar {
-    // bobcat::Window* _obj;
-    aiero::Tool *selectorTool;
-    aiero::Tool *paintBrushTool;
-    aiero::Tool *eraserTool;
+        bobcat::Window* operator[](const std::string &subWindow) {
+            if (subWindow == "Color") return colorPanelWindow;
+            if (subWindow == "Size") return sizePanelWindow;
+            if (subWindow == "Layers") return layerPanelWindow;
+            
+            throw subWindow + " does not exist as a frame of the side panel";
+        }
 
-    // Shapes
-    aiero::Tool *circleTool;
-    aiero::Tool *pentagonTool;
-    aiero::Tool *rectangleTool;
-    aiero::Tool *starTool;
-    aiero::Tool *trapezoidTool;
-    aiero::Tool *triangleTool;
-
-public:
-    MWToolbar(int x, int y, int w, int h); // will be initialized in src
-};
-
-class MWDrawingCanvas : public aiero::Canvas {
-public:
-    MWDrawingCanvas(int x, int y, int w, int h) : Canvas(x, y, w, h) {
-        this->end();
+        void parent(bobcat::Window* newParent) { newParent->add(sidePanel); };
+        void color(Fl_Color flColor) { bobcat::Group::color(flColor); sidePanel->redraw(); };
+        // void bobcat::
     };
-};
 
-// class MainWindow : public bobcat::Group {
-//     int _x, _y, _w, _h;
+    class MWToolbar : public aiero::Toolbar {
+        // bobcat::Window* _obj;
+        aiero::Tool *selectorTool;
+        aiero::Tool *paintBrushTool;
+        aiero::Tool *eraserTool;
 
-//     bobcat::Window* _obj;
-//     MainWindowMenubar _toolBar;
+        // Shapes
+        aiero::Tool *circleTool;
+        aiero::Tool *pentagonTool;
+        aiero::Tool *rectangleTool;
+        aiero::Tool *starTool;
+        aiero::Tool *diamondTool;
+        aiero::Tool *triangleTool;
 
-//     void _init() {
-//         _obj = new bobcat::Window(_x, _y, _w, _h, "Main Window");
-//     };
+    public:
+        MWToolbar(int x, int y, int w, int h);
+    };
 
-//     public:
-//         MainWindow(int x, int y, int w, int h) : Group(x, y, w, h),
-//         _toolBar(w, h) {
-//             _x = x;
-//             _y = y;
-//             _w = w;
-//             _h = h;
-
-//             _init();
-
-//             Fl_Group::add(_obj);
-//         };
-
-//         void show() { _obj->show(); };
-//         void hide() { _obj->hide(); };
-//         void add(bobcat::Widget* sender) {
-//             Fl_Group::add(sender);
-//             _obj->add(sender);
-//         };
-// };
+    class MWDrawingCanvas : public aiero::Canvas {
+        void onMouseUpEvent(bobcat::Widget* sender, float mouseX, float mouseY) override {
+            const aiero::Tool* focusedTool = toolbar->focusedTool();
+            if (focusedTool == nullptr) return;
+            
+            std::cout << "mouse up on canvas" << std::endl;
+        };
+        void onMouseDownEvent(bobcat::Widget* sender, float mouseX, float mouseY) override {
+            const aiero::Tool* focusedTool = toolbar->focusedTool();
+            if (focusedTool == nullptr) return;
+            
+            tool->onClickCb(mouseX, mouseY);
+            std::cout << "mouse down on canvas" << std::endl;
+        };
+        void onMouseDragEvent(bobcat::Widget* sender, float mouseX, float mouseY) override {
+            
+        };
+    public:
+        MWDrawingCanvas(int x, int y, int w, int h, aiero::Toolbar* tb) : Canvas(x, y, w, h) {
+            toolbar = tb;
+            this->end();
+        };
+    };
 } // namespace aiero
 
 #endif

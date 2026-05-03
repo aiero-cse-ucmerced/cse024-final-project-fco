@@ -6,19 +6,15 @@
 
 #include "Color.h"
 #include "Shape.h"
+#include <GL/gl.h>
 
 class Point : public Shape {
 
 public:
     Point(int x, int y);
     
-    virtual void color(Color newColor) override {
-        _color = newColor;
-        // stuff happens
-    };
-    
-    Color color() const { return _color; };
     void draw() override;
+    
     bool checkMouseBounds(float mouseX, float mouseY) const override {
         float dx = mouseX - _x;
         float dy = mouseY - _y;

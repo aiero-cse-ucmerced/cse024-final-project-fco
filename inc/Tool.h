@@ -22,10 +22,10 @@ namespace aiero {
         double _size;
         
 
-        virtual void onClick(int x, int y) {};
-        virtual void onMouseDown(int x, int y) {};
-        virtual void onMouseUp(int x, int y) {};
-        virtual void onMouseDrag(int x, int y) {};
+        virtual void onClick(float x, float y) {};
+        virtual void onMouseDown(float x, float y) {};
+        virtual void onMouseUp(float x, float y) {};
+        virtual void onMouseDrag(float x, float y) {};
 
         virtual void _activate() = 0;
         virtual void _deactivate() = 0;
@@ -72,7 +72,10 @@ namespace aiero {
                     deActivate();
             }
 
-            
+            // event handlers
+            void onMouseUpCb(float mouseX, float mouseY) { onMouseUp(mouseX, mouseY); };
+            void onMouseDownCb(float mouseX, float mouseY) { onClick(mouseX, mouseY); onMouseDown(mouseX, mouseY); };
+            void onMouseDragCb(float mouseX, float mouseY) { onMouseDrag(mouseX, mouseY); };
 
             friend std::ostream &operator<<(std::ostream &os, const aiero::Tool &tl);
     };

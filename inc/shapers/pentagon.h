@@ -19,7 +19,7 @@ public:
     };
 
     // optional
-    void onClick(int x, int y) override;
+    void onClick(float x, float y) override;
 
     // required
     void _activate() override {};
