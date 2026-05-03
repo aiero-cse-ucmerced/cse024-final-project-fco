@@ -20,7 +20,7 @@ void StarTool::onClick(int x, int y) {
     
 }
 
-void TrapezoidTool::onClick(int x, int y) {
+void DiamondTool::onClick(int x, int y) {
     
 }
 

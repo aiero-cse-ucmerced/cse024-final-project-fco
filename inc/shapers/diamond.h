@@ -8,7 +8,7 @@
 #include "../Tool.h"
 
 class DiamondTool : public aiero::Tool {
-    TOOL _name = SHAPE_TRAPEZOID;
+    TOOL _name = SHAPE_DIAMOND;
 
 public:
     DiamondTool();

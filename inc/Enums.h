@@ -16,7 +16,7 @@ enum TOOL {
     SHAPE_PENTAGON,
     SHAPE_RECTANGLE,
     SHAPE_STAR,
-    SHAPE_TRAPEZOID,
+    SHAPE_DIAMOND,
     SHAPE_TRIANGLE,
 
     // default tool
