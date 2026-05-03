@@ -11,11 +11,6 @@
 
 class Diamond : public Shape {
     public:
-        Diamond();
-        ~Diamond() {
-
-        };
-        
         void draw() override {
             
         };

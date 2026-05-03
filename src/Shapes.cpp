@@ -7,11 +7,14 @@
 #include "shapers/pentagon.h"
 
 void Point::draw() {
-
-}
-
-Circle::Circle() {
+    glPointSize(size);
+        
+    const BaseColor bColor = _color.toBase();
+    glColor3f(bColor.r, bColor.g, bColor.b);
     
+    glBegin(GL_POINT);
+        glVertex2f(_x, _y);
+    glEnd();
 }
 
 // Pentagon::Pentagon() {
