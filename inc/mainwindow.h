@@ -7,6 +7,8 @@
 #include "Canvas.h"
 #include "Menubar.h"
 #include "Toolbar.h"
+#include "tools/CoreTool.h"
+
 #include <FL/Enumerations.H>
 #include <FL/Fl_Group.H>
 #include <bobcat_ui/bobcat_ui.h>
@@ -104,20 +106,34 @@ namespace aiero {
 
     class MWToolbar : public aiero::Toolbar {
         // bobcat::Window* _obj;
-        aiero::Tool *selectorTool;
-        aiero::Tool *paintBrushTool;
-        aiero::Tool *eraserTool;
+        aiero::CoreTool *selectorTool;
+        aiero::CoreTool *paintBrushTool;
+        aiero::CoreTool *eraserTool;
 
         // Shapes
-        aiero::Tool *circleTool;
-        aiero::Tool *pentagonTool;
-        aiero::Tool *rectangleTool;
-        aiero::Tool *starTool;
-        aiero::Tool *diamondTool;
-        aiero::Tool *triangleTool;
-
+        aiero::CoreTool *circleTool;
+        aiero::CoreTool *pentagonTool;
+        aiero::CoreTool *rectangleTool;
+        aiero::CoreTool *starTool;
+        aiero::CoreTool *diamondTool;
+        aiero::CoreTool *triangleTool;
+        
     public:
         MWToolbar(int x, int y, int w, int h);
+
+        void internalCanvasForCoreTools(aiero::Canvas* c) {
+            selectorTool->internalCanvas(c);
+            paintBrushTool->internalCanvas(c);
+            eraserTool->internalCanvas(c);
+
+            // suddenly shapers need internal access to Canvas too
+            circleTool->internalCanvas(c);
+            diamondTool->internalCanvas(c);
+            pentagonTool->internalCanvas(c);
+            rectangleTool->internalCanvas(c);
+            starTool->internalCanvas(c);
+            triangleTool->internalCanvas(c);
+        }
     };
 
     class MWDrawingCanvas : public aiero::Canvas {

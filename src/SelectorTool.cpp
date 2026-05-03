@@ -5,11 +5,11 @@
 
 using namespace std;
 
-void SelectorTool::onClick(float x, float y) {
+void SelectorTool::onMouseUp(float x, float y) {
     cout << "selector tool triggered?";
 }
 
-void SelectorTool::onClick(float x, float y) {
+void SelectorTool::onMouseDown(float x, float y) {
     cout << "selector tool triggered?";
 }
 

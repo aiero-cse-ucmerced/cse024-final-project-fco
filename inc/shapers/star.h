@@ -9,8 +9,9 @@
 #include "../Enums.h"
 
 #include "../Shape.h"
+#include "../tools/CoreTool.h"
 
-class StarTool : public aiero::Tool {
+class StarTool : public aiero::CoreTool {
     TOOL _name = SHAPE_STAR;
 
     public:

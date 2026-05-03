@@ -3,6 +3,10 @@
 
 #include "tools/paintbrush.h"
 
-void PaintBrushTool::onClick(float x, float y) {
+void PaintBrushTool::onMouseUp(float x, float y) {
+    
+}
+
+void PaintBrushTool::onMouseDown(float x, float y) {
     
 }

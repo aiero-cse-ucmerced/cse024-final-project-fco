@@ -7,7 +7,9 @@
 #include "../Enums.h"
 #include "../Tool.h"
 
-class EraserTool : public aiero::Tool {
+#include "CoreTool.h"
+
+class EraserTool : public aiero::CoreTool {
     TOOL _name = ERASER;
 
     public:

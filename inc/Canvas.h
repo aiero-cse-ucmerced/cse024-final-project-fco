@@ -8,7 +8,6 @@
 #include "Point.h"
 #include "Shape.h"
 #include "History.h"
-#include "Tool.h"
 #include "Toolbar.h"
 
 #include <GL/gl.h>

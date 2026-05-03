@@ -7,7 +7,9 @@
 #include "../Enums.h"
 #include "../Tool.h"
 
-class PaintBrushTool : public aiero::Tool {
+#include "CoreTool.h"
+
+class PaintBrushTool : public aiero::CoreTool {
     TOOL _name = PAINT_BRUSH;
 
     public:

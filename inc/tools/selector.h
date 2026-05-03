@@ -10,7 +10,9 @@
 #include <FL/Fl_PNG_Image.H>
 #include <bobcat_ui/button.h>
 
-class SelectorTool : public aiero::Tool {
+#include "CoreTool.h"
+
+class SelectorTool : public aiero::CoreTool {
     TOOL _name = SELECTOR;
 
     public:

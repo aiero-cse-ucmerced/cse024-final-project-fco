@@ -39,6 +39,8 @@ namespace aiero {
                 _obj = nullptr; // make sure this occurs
             };
 
+            virtual bool isCore() { return false; };
+
             TOOL name() const { return _name; };
             void name(TOOL tlname) { _name = tlname; };
             float size() const { return _size; };

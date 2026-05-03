@@ -8,6 +8,9 @@
 #include "../Tool.h"
 
 #include "../Shape.h"
+#include "../Application.h"
+
+#include "../tools/CoreTool.h"
 
 class Circle : public Shape {
     public:
@@ -21,7 +24,7 @@ class Circle : public Shape {
 
 };
 
-class CircleTool : public aiero::Tool {
+class CircleTool : public aiero::CoreTool {
     TOOL _name = SHAPE_CIRCLE;
 
 public:

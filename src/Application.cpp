@@ -20,7 +20,8 @@ Application::Application() {
     toolBar = new MWToolbar(0, 40, 45, mainWindow->h() - 80);
     toolBar->parent(mainWindow);
     toolBar->color(mainWindow->color());
-    // toolBar->color(FL_RED);
+    
+    
 
     sidePanel = new MWSidePanel(mainWindow->w() - 300, 25, 300, mainWindow->h() - 25);
     sidePanel->color(FL_GREEN);
@@ -30,7 +31,9 @@ Application::Application() {
     // cout << "side parent: " << sidePanel->parent()->label() << endl;
     
     drawingCanvas = new MWDrawingCanvas(200, 50, mainWindow->h() - (50*2), mainWindow->h() - (50*2), toolBar);
-    // last
+    
+    // gives internal canvas permission to core tools
+    toolBar->internalCanvasForCoreTools(drawingCanvas);
 
     try {
         menuBar->linkTabVisibility((*menuBar)["View/Toolbar"], (bobcat::Widget*) toolBar->obj());

@@ -9,8 +9,9 @@
 #include "../Enums.h"
 
 #include "../Shape.h"
+#include "../tools/CoreTool.h"
 
-class PentagonTool : public aiero::Tool {
+class PentagonTool : public aiero::CoreTool {
     TOOL _name = SHAPE_PENTAGON;
 
 public:

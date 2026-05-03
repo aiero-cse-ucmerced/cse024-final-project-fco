@@ -8,6 +8,7 @@
 #include "../Tool.h"
 
 #include "../Shape.h"
+#include "../tools/CoreTool.h"
 
 class Diamond : public Shape {
     public:
@@ -21,7 +22,7 @@ class Diamond : public Shape {
 
 };
 
-class DiamondTool : public aiero::Tool {
+class DiamondTool : public aiero::CoreTool {
     TOOL _name = SHAPE_DIAMOND;
 
 public:
