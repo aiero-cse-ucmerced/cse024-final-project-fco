@@ -6,6 +6,7 @@
 
 #include "../Enums.h"
 #include "../Tool.h"
+#include <FL/Enumerations.H>
 #include <FL/Fl_PNG_Image.H>
 #include <bobcat_ui/button.h>
 
@@ -14,8 +15,10 @@ class SelectorTool : public aiero::Tool {
 
     public:
         SelectorTool() {
-            _obj = new bobcat::Button(0, 0, 45, 45, "selector");
-            _obj->image(new Fl_PNG_Image(""));
+            _obj = new bobcat::Button(0, 0, 45, 45, "");
+            _obj->box(FL_NO_BOX); // no background
+            _obj->image(new Fl_PNG_Image("assets/selector.png"));
+            _obj->align(FL_ALIGN_IMAGE_BACKDROP); // necessary for image to align center
         };
 
         // optional
