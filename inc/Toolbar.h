@@ -105,7 +105,7 @@ namespace aiero {
                 ON_CLICK(tool->obj(), Toolbar::_onClickEvent);
                 // std::cout << "3" << std::endl;
                 
-                // _sortItems();
+                _sortItems();
             };
 
             const bobcat::Window* obj() const { return _obj; };
