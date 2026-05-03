@@ -3,12 +3,14 @@
 
 
 #include "Shapers.h"
+#include "shapers/circle.h"
+#include "shapers/diamond.h"
+#include "shapers/pentagon.h"
+#include "shapers/rectangle.h"
+#include "shapers/star.h"
+#include "shapers/triangle.h"
 
 // CIRCLE
-
-void CircleTool::onMouseUp(float x, float y) {
-    
-}
 
 void CircleTool::onMouseDown(float x, float y) {
     
@@ -16,46 +18,30 @@ void CircleTool::onMouseDown(float x, float y) {
 
 // PENTAGON
 
-void PentagonTool::onMouseUp(float x, float y) {
-    
-}
-
 void PentagonTool::onMouseDown(float x, float y) {
     
 }
 
 // RECTANGLE
 
-void RectangleTool::onMouseUp(float x, float y) {
-    
-}
 void RectangleTool::onMouseDown(float x, float y) {
     
 }
 
 // STAR
 
-void StarTool::onMouseUp(float x, float y) {
-    
-}
 void StarTool::onMouseDown(float x, float y) {
     
 }
 
 // DIAMOND
 
-void DiamondTool::onMouseUp(float x, float y) {
-    
-}
 void DiamondTool::onMouseDown(float x, float y) {
     
 }
 
 // TRIANGLE
 
-void TriangleTool::onMouseUp(float x, float y) {
-    
-}
 void TriangleTool::onMouseDown(float x, float y) {
     
 }

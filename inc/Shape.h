@@ -20,6 +20,9 @@ public:
         _y = 0.0;
     };
 
+    Shape(float x, float y) : _x(x), _y(y), _color(0, 0, 0) {};
+
+    // TODO: copy constructor for history
     Shape(const Shape& parent) : _color(parent.color()) {
 
     };

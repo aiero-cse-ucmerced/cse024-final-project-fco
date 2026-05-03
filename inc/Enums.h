@@ -7,6 +7,7 @@
 
 enum TOOL {
     // core tools
+    PENCIL,
     PAINT_BRUSH,
     ERASER,
     SELECTOR,

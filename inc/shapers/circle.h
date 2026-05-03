@@ -14,9 +14,7 @@
 
 class Circle : public Shape {
     public:
-        void draw() override {
-            
-        };
+        void draw() override;
         
         bool checkMouseBounds(float mouseX, float mouseY) const override {
             return false;
@@ -34,7 +32,6 @@ public:
 
     // optional
     void onMouseDown(float x, float y) override;
-    void onMouseUp(float x, float y) override;
 
     // required
     void _activate() override {};

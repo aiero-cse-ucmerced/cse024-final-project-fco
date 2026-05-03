@@ -4,8 +4,13 @@
 #include "Point.h"
 #include "Tools.h"
 #include "shapers/circle.h"
+#include "shapers/diamond.h"
 #include "shapers/pentagon.h"
+#include "shapers/rectangle.h"
+#include "shapers/star.h"
+#include "shapers/triangle.h"
 
+// Point has been created as an example
 void Point::draw() {
     glPointSize(size);
         
@@ -17,18 +22,28 @@ void Point::draw() {
     glEnd();
 }
 
-// Pentagon::Pentagon() {
+// TODO: create the shape
+
+void Circle::draw() {
     
-// }
-// Circle::Circle() {
+}
+
+void Diamond::draw() {
     
-// }
-// Circle::Circle() {
+}
+
+void Pentagon::draw() {
     
-// }
-// Circle::Circle() {
+}
+
+void Rectangle::draw() {
     
-// }
-// Circle::Circle() {
+}
+
+void Star::draw() {
     
-// }
+}
+
+void Triangle::draw() {
+    
+}

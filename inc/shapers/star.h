@@ -11,6 +11,16 @@
 #include "../Shape.h"
 #include "../tools/CoreTool.h"
 
+class Star : public Shape {
+    public:
+        void draw() override;
+        
+        bool checkMouseBounds(float mouseX, float mouseY) const override {
+            return false;
+        };
+
+};
+
 class StarTool : public aiero::CoreTool {
     TOOL _name = SHAPE_STAR;
 
@@ -21,7 +31,6 @@ class StarTool : public aiero::CoreTool {
 
         // optional
         void onMouseDown(float x, float y) override;
-        void onMouseUp(float x, float y) override;
 
         // required
         void _activate() override {};

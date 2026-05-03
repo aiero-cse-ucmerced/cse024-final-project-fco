@@ -23,6 +23,7 @@ class PaintBrushTool : public aiero::CoreTool {
         // optional
         void onMouseDown(float x, float y) override;
         void onMouseUp(float x, float y) override;
+        void onMouseDrag(float x, float y) override;
 
         // required
         void _activate() override {

@@ -14,6 +14,7 @@
 #include <bobcat_ui/canvas.h>
 #include <bobcat_ui/group.h>
 #include <bobcat_ui/window.h>
+#include <vector>
 
 namespace aiero {
     struct Layer {
@@ -65,8 +66,11 @@ namespace aiero {
             std::cout << "internal mouse drag event cb" << std::endl;
             onMouseDragEvent(sender, mouseX, mouseY);
         };
-        
 
+        // points tracker
+        bool _pointsTracked = false;
+        std::vector<Point*> ptsCollection;
+        
     protected:
         virtual void onMouseUpEvent(bobcat::Widget* sender, float mouseX, float mouseY) {};
         virtual void onMouseDownEvent(bobcat::Widget* sender, float mouseX, float mouseY) {};
@@ -103,10 +107,15 @@ namespace aiero {
         void bringLayerBack(Shape* layerShape);
         void bringLayerUp(Shape* layerShape);
         void bringLayerDown(Shape* layerShape);
+
+        void addPoint(Point* pt); // no history tracking
+        void deletePoint(Point* pt); // no history tracking
+        
+        void startTrackingPoints();
+        void stopTrackingPoints();
         
         void addShape(Shape* shape);
-        void deleteShape(Shape* shape);
-        void deleteObjectsFromMousePosition(float mx, float my);
+        void deleteShapesFromMousePosition(float mx, float my); // delete shapes
         
 
         // required
