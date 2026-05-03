@@ -1,0 +1,40 @@
+// AIERO-FINAL-PROJECT-FCO FILE (Do not remove tag)
+// Refer to aiero.space/final-project-fco
+
+
+#ifndef PENTAGON_H
+#define PENTAGON_H
+
+#include "../Tool.h"
+#include "../Enums.h"
+
+#include "../Shape.h"
+#include "../tools/CoreTool.h"
+
+class Pentagon : public Shape {
+    public:
+        void draw() override;
+        
+        bool checkMouseBounds(float mouseX, float mouseY) const override {
+            return false;
+        };
+
+};
+
+class PentagonTool : public aiero::CoreTool {
+    TOOL _name = SHAPE_PENTAGON;
+
+public:
+    PentagonTool()  {
+        // TODO
+    };
+
+    // optional
+    void onMouseDown(float x, float y) override;
+
+    // required
+    void _activate() override {};
+    void _deactivate() override {};
+};
+
+#endif
