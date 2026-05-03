@@ -8,7 +8,7 @@
 - @vainavichez
 - @TheLegendarySpark
 
-Icons are taken from Google's Material Icons https://fonts.google.com/icons
+Icons are taken from Google's Material Icons https://fonts.google.com/icons and Iconoir https://iconoir.com/
 
 ---
 
