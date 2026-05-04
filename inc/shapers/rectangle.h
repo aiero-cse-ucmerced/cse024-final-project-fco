@@ -15,10 +15,10 @@ public:
     Rectangle()
         : color(0, 0, 0)
     {
-        x = 0.0f;
-        y = 0.0f;
-        width  = 0.2f;
-        height = 0.2f;
+        x = 0.0;
+        y = 0.0;
+        width  = 0.2;
+        height = 0.2;
     }
 
     Rectangle(float _x, float _y, float _width, float _height, Color _color)
