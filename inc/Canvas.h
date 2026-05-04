@@ -26,9 +26,17 @@ namespace aiero {
         
     };
 
+    struct CanvasGridSize {
+        float width = 50;
+        float height = 50;
+          
+    };
+
     class Canvas : public bobcat::Canvas_ {
         // std::vector<Point *> points;
         // std::vector<Shape *> shapes;
+        CanvasGridSize gridSize;
+        
         std::vector<Layer> layers;
 
         // TODO: history
@@ -81,6 +89,8 @@ namespace aiero {
             selectedShape = nullptr;
             toolbar = nullptr; // need to be initialized by the derived class
             _focusedLayerIndex = -1;
+
+            gridSize = {10, 10};
         };
 
         void initEvents() {
@@ -122,8 +132,8 @@ namespace aiero {
         void render() {
             // const int x = 0;
             // const int y = 0;
-            // const int width = 1;
-            // const int height = 1;
+            // const float width = 1 / gridSize.width;
+            // const float height = 1 / gridSize.height;
             
             // glBegin(GL_POLYGON);
             //     glVertex2f(x,           y + height / 2.0f); // top
