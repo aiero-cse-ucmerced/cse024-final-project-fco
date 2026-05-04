@@ -16,7 +16,7 @@ namespace utils {
 
 
     template <typename B>
-    std::vector<B> copyVector(std::vector<B> lhs) {
+    std::vector<B> copyVector(const std::vector<B> &lhs) {
         std::vector<B> rhs = {};
 
         for (const auto& a : lhs) {
