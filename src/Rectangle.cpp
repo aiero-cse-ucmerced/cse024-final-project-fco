@@ -1,16 +1,21 @@
 #include <GL/gl.h>
-#include <Rectangle.h>
+#include "../inc/Color.h"
+#include "../inc/shapers/Rectangle.h"
+#include "../inc/shapers/rectangle.h"
 
-
-Rectangle::Rectangle(){
-    x=0.0;
-    y=0.0;
-    width=0.2;
-    height=0.2;
-    color = Color(0,0,0);
+Rectangle::Rectangle()
+    : color(0, 0, 0)
+{
+    x = 0.0;
+    y = 0.0;
+    width  = 0.2;
+    height = 0.2;
 }
 
-Rectangle::Rectangle(float _x, float _y, float _width, float _height, Color _color){
+
+Rectangle::Rectangle(float _x, float _y, float _width, float _height, Color _color)
+    : color(_color)
+{
     x = _x;
     y = _y;
     width = _width;
@@ -28,6 +33,3 @@ void Rectangle::draw() const{
         glVertex2f(x - width/2, y - height/2);
     glEnd();
 }
-    
-
-
