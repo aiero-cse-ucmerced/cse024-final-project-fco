@@ -6,12 +6,25 @@
 #define UTILS
 
 #include <cmath>
+#include <vector>
 
 namespace utils {
     template <typename A> // where A is a math data type (int, double, float, etc..)
     A clamp(A currentValue, A minimum, A maximum) {
         return currentValue < minimum ? minimum : std::min(currentValue, maximum);
-    }
+    };
+
+
+    template <typename B>
+    std::vector<B> copyVector(std::vector<B> lhs) {
+        std::vector<B> rhs = {};
+
+        for (const auto& a : lhs) {
+            rhs.push_back(a);    
+        }
+        
+        return rhs;
+    };
 }
 
 #endif
