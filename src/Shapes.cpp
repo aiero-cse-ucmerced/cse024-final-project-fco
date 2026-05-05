@@ -30,16 +30,15 @@ void Circle::draw() {
     const BaseColor bColor = _color.toBase();
     glColor3f(bColor.r, bColor.g, bColor.b);
     
-    const int N = 32;
+    const int NUM_SEGMENTS = 32;
     const float TWO_PI = 6.2831;
 
 
     glBegin(GL_POLYGON);
-    for(int i = 0; i < N; i ++){
+    for(int i = 0; i < NUM_SEGMENTS; i ++){
         float angle = i * TWO_PI / N;
-        float vx = x + radius * cos(angle);
-        float vy = y + radius * sin(angle);
-
+        float vx = _x + _radius * cos(angle);
+        float vy = _y + _radius * sin(angle);
         glVertex2f(vx, vy);
     }
     glEnd();
