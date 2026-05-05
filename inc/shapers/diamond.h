@@ -13,7 +13,7 @@
 class Diamond : public Shape {
 public:
     Diamond()
-        : Shape(0.0, 0.0f), width(0.15), height(0.15)
+        : Shape(0.0f, 0.0f), width(0.15f), height(0.15f)
     {
         _color = Color(0.0f, 0.0f, 0.0f);
     }
