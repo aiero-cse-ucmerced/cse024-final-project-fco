@@ -16,11 +16,13 @@ void Point::draw() {
         
     const BaseColor bColor = _color.toBase();
     glColor3f(bColor.r, bColor.g, bColor.b);
-    
+    glEnable(GL_POINT_SMOOTH);
+     
     glBegin(GL_POINTS);
         glVertex2f(_x, _y);
     glEnd();
-    // std::cout << "Point drawn with size " + std::to_string(size) + "?" << std::endl;
+    
+    // std::cout << "Point drawn @ (" + std::to_string(_x) + ", " + std::to_string(_y) + ") with size " + std::to_string(size) + "?" << std::endl;
 }
 
 // TODO: create the shape
