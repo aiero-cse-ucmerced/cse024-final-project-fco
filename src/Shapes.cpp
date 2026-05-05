@@ -9,7 +9,8 @@
 #include "shapers/rectangle.h"
 #include "shapers/star.h"
 #include "shapers/triangle.h"
-
+#include <GL/gl.h>
+#include <cmath>
 // Point has been created as an example
 void Point::draw() {
     glPointSize(size);
@@ -49,7 +50,16 @@ void Diamond::draw() {
 }
 
 void Pentagon::draw() {
-    
+  glPointSize(size);
+  
+  const BaseColor color = _color.toBase();
+  glColor3f(color.r,color.g,color.b);
+  glBegin(GL_POLYGON);
+  for(int i = 0; i < 5; i++){
+    double angle = (pi/2) + i * (2 * pi / 5.0);
+    glVertex2f(_x + size*std::cos(angle), _y + size*std::sin(angle));
+  }
+  glEnd();   
 }
 
 void Rectangle::draw() {
@@ -67,5 +77,14 @@ void Star::draw() {
 }
 
 void Triangle::draw() {
-    
+  glPointSize(size);
+
+  const BaseColor color = _color.toBase();
+  glColor3f(color.r,color.g,color.b);
+  glBegin(GL_POLYGON);
+  for(int i = 0; i < 3; i++){
+    double angle = (pi/2) + i * (2 * pi / 3.0);
+    glVertex2f(_x + size*std::cos(angle), _y + size*std::sin(angle));
+  }
+  glEnd();
 }
