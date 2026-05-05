@@ -1,40 +1,58 @@
-// AIERO-FINAL-PROJECT-FCO FILE (Do not remove tag)
-// Refer to aiero.space/final-project-fco
+void Rectangle::draw() {
+    const BaseColor b = _color.toBase();
+    glColor3f(b.r, b.g, b.b);
+    
+    glBegin(GL_POLYGON);
+    glVertex2f(_x - width/2, _y + height/2);
+        glVertex2f(_x + width/2, _y + height/2);
+        glVertex2f(_x + width/2, _y - height/2);
+        glVertex2f(_x - width/2, _y - height/2);
+    glEnd();
+}
 
+void Star::draw() {
+    const BaseColor bColor = _color.toBase();
+    
+    glColor3f(bColor.r, bColor.g, bColor.b);
+    
+    const int VERTICES = 10;
+    const float PI = 3.141592;
+    const float TWO_PI = 2 * PI;
 
-#ifndef STAR_H
-#define STAR_H
+    const float startAngle = PI * 0.5;
 
-#include "../Tool.h"
-#include "../Enums.h"
+    //Fill star
+    glBegin(GL_POLYGON);
+    for(int i = 0; i < VERTICES; i ++){
+        float r;
+        if(i % 2 ==0){
+            r = outerRadius;
+        } else {
+            r = innerRadius;
+        }
+        //converted deg to rad
+        float angle = startAngle + i * (TWO_PI / float(VERTICES)); 
+        float vx = _x + r * cos(angle);
+        float vy = _y + r * sin(angle);
+        glVertex2f(vx, vy);  
+    }
+    glEnd();
 
-#include "../Shape.h"
-#include "../tools/CoreTool.h"
-
-class Star : public Shape {
-    public:
-        void draw() override;
-        
-        bool checkMouseBounds(float mouseX, float mouseY) const override {
-            return false;
-        };
-
-};
-
-class StarTool : public aiero::CoreTool {
-    TOOL _name = SHAPE_STAR;
-
-    public:
-        StarTool() {
-            // change whatever
-        };
-
-        // optional
-        void onMouseDown(float x, float y) override;
-
-        // required
-        void _activate() override {};
-        void _deactivate() override {};
-};
-
-#endif
+    // outline
+    glColor3f(0.0f, 0.0f, 0.0f);
+    glBegin(GL_LINE_LOOP);
+    for (int i = 0; i < VERTICES; ++i) {
+         float r;
+        if(i % 2 ==0){
+            r = outerRadius;
+        } else {
+            r = innerRadius;
+        }
+        //converted deg to rad
+        float angle = startAngle + i * (TWO_PI / float(VERTICES)); 
+        float vx = _x + r * cos(angle);
+        float vy = _y + r * sin(angle);
+        glVertex2f(vx, vy);
+    }
+    glEnd();
+}
