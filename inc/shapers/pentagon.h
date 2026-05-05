@@ -11,6 +11,9 @@
 #include "../Shape.h"
 #include "../tools/CoreTool.h"
 #include <cmath>
+#include <FL/Enumerations.H>
+#include <FL/Fl_PNG_Image.H>
+#include <bobcat_ui/button.h>
 
 class Pentagon : public Shape {
     double pi;
