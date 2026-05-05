@@ -11,8 +11,8 @@
 class Point : public Shape {
 
 public:
-    Point(int x, int y);
-    
+    Point(float x, float y) {};
+
     void draw() override;
     
     bool checkMouseBounds(float mouseX, float mouseY) const override {

@@ -19,7 +19,7 @@
 namespace aiero {
     struct Layer {
         int priority;
-        Shape* shape;
+        std::vector<Shape*> shapes;
     };
 
     struct CanvasRecord {
@@ -78,7 +78,6 @@ namespace aiero {
         // points tracker
         bool _pointsTracked = false;
         std::vector<Point*> ptsCollection;
-        
     protected:
         virtual void onMouseUpEvent(bobcat::Widget* sender, float mouseX, float mouseY) {};
         virtual void onMouseDownEvent(bobcat::Widget* sender, float mouseX, float mouseY) {};
@@ -129,7 +128,8 @@ namespace aiero {
         
 
         // required
-        void render() {
+        void render();
+        // void render() {
             // const int x = 0;
             // const int y = 0;
             // const float width = 1 / gridSize.width;
@@ -141,7 +141,7 @@ namespace aiero {
             //     glVertex2f(x,           y - height / 2.0f); // bottom
             //     glVertex2f(x - width / 2.0f, y);            // left
             // glEnd();
-        };
+        // };
     };
 }; // namespace aiero
 
