@@ -10,7 +10,7 @@
 #include "shapers/star.h"
 #include "shapers/triangle.h"
 #include <GL/gl.h>
-
+#include <cmath>
 // Point has been created as an example
 void Point::draw() {
     glPointSize(size);
@@ -40,7 +40,7 @@ void Pentagon::draw() {
   glColor3f(color.r,color.g,color.b);
   glBegin(GL_POLYGON);
   for(int i = 0; i < 5; i++){
-    double angle = (pi/2) + i + (0.4 * pi);
+    double angle = (pi/2) + i * (2 * pi / 5.0);
     glVertex2f(_x + size*cos(angle), _y + size*sin(angle));
   }
   glEnd();   
@@ -60,8 +60,9 @@ void Triangle::draw() {
   const BaseColor color = _color.toBase();
   glColor3f(color.r,color.g,color.b);
   glBegin(GL_POLYGON);
-  glVertex2f(_x,_y + size);
-  glVertex2f(_x - size*sin(pi/3), _y - size*cos(pi/3));
-  glVertex2f(_x,_y + size);
+  for(int i = 0; i < 3; i++){
+    double angle = (pi/2) + i * (2 * pi / 3.0);
+    glVertex2f(_x + size*cos(angle), _y + size*sin(angle));
+  }
   glEnd();
 }
