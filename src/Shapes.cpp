@@ -25,7 +25,23 @@ void Point::draw() {
 // TODO: create the shape
 
 void Circle::draw() {
+
+    const BaseColor bColor = _color.toBase();
+    glColor3f(bColor.r, bColor.g, bColor.b);
     
+    const int N = 32;
+    const float TWO_PI = 6.2831;
+
+
+    glBegin(GL_POLYGON);
+    for(int i = 0; i < N; i ++){
+        float angle = i * TWO_PI / N;
+        float vx = x + radius * cos(angle);
+        float vy = y + radius * sin(angle);
+
+        glVertex2f(vx, vy);
+    }
+    glEnd();
 }
 
 void Diamond::draw() {
