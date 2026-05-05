@@ -1,6 +1,3 @@
-// AIERO-FINAL-PROJECT-FCO FILE (Do not remove tag)
-// Refer to aiero.space/final-project-fco
-
 #ifndef CIRCLE_H
 #define CIRCLE_H
 
@@ -12,34 +9,27 @@
 
 class Circle : public Shape {
 public:
+    
     Circle()
-        : color(0, 0, 0)
+        : Shape(0.0, 0.0), _radius(25.0)
     {
-        x = 0.0;
-        y = 0.0;
-        radius = 25.0;
+        _color = Color(0.0f, 0.0f, 0.0f); 
     }
 
-    Circle(float _x, float _y, float _radius, Color _color)
-        : color(_color)
+   
+    Circle(float Circx, float Circy, float radius, const Color& c)
+        : Shape(Circx, Circy), _radius(radius)
     {
-        x = _x;
-        y = _y;
-        radius = _radius;
+        _color = c; 
     }
 
     void draw() override;
+    bool checkMouseBounds(float mouseX, float mouseY) const override;
 
-    bool checkMouseBounds(float mouseX, float mouseY) const override {
-
-        return false;
-    }
+   
 
 private:
-    float x;
-    float y;
-    float radius;
-    Color color;
+    float _radius;
 };
 
 class CircleTool : public aiero::CoreTool {
@@ -48,7 +38,6 @@ class CircleTool : public aiero::CoreTool {
 public:
     CircleTool() {}
     void onMouseDown(float x, float y) override;
-    
     void _activate() override {}
     void _deactivate() override {}
 };
