@@ -11,7 +11,10 @@
 class Point : public Shape {
 
 public:
-    Point(float x, float y) {};
+    Point(float x, float y) {
+        _x = x;
+        _y = y;
+    };
 
     void draw() override;
     
