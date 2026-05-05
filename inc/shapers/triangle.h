@@ -10,6 +10,7 @@
 
 #include "../Shape.h"
 #include "../tools/CoreTool.h"
+#include <cmath>
 
 class Triangle : public Shape {
     double pi;
