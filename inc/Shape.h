@@ -6,6 +6,7 @@
 
 #include "Color.h"
 #include "utils.h"
+#include <iostream>
 
 class Shape {
 protected:
@@ -17,13 +18,14 @@ protected:
     Color _color;
 public:
     Shape() : _color(0, 0, 0) {
-        _x = 0.0;
-        _y = 0.0;
+        // _x = 0.0;
+        // _y = 0.0;
         size = 1;
     };
 
     Shape(float x, float y) : _x(x), _y(y), _color(0, 0, 0) {
         size = 1;
+        // std::cout << "shape created at " << _x << ", " << _y << std::endl;
     };
 
     // TODO: copy constructor for history
