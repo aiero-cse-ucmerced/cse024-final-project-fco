@@ -46,6 +46,7 @@ Application::Application() {
 
     mainWindow->add(drawingCanvas);
     drawingCanvas->initEvents();
+
     
     mainWindow->show();
 }
