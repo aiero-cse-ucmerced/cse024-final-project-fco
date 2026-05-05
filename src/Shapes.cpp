@@ -41,7 +41,7 @@ void Pentagon::draw() {
   glBegin(GL_POLYGON);
   for(int i = 0; i < 5; i++){
     double angle = (pi/2) + i * (2 * pi / 5.0);
-    glVertex2f(_x + size*cos(angle), _y + size*sin(angle));
+    glVertex2f(_x + size*std::cos(angle), _y + size*std::sin(angle));
   }
   glEnd();   
 }
@@ -62,7 +62,7 @@ void Triangle::draw() {
   glBegin(GL_POLYGON);
   for(int i = 0; i < 3; i++){
     double angle = (pi/2) + i * (2 * pi / 3.0);
-    glVertex2f(_x + size*cos(angle), _y + size*sin(angle));
+    glVertex2f(_x + size*std::cos(angle), _y + size*std::sin(angle));
   }
   glEnd();
 }
