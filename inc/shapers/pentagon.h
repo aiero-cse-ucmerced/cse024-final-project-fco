@@ -39,16 +39,16 @@ class Pentagon : public Shape {
             for (int i = 0; i < 5; i++) {
                 const double a1 = (pi / 2.0) + i * (2.0 * pi / 5.0);
                 const double a2 = (pi / 2.0) + ((i + 1) % 5) * (2.0 * pi / 5.0);
+
+                const float ax = _x + size * std::cos(a1);
+                const float ay = _y + size * std::sin(a1);
+                const float bx = _x + size * std::cos(a2);
+                const float by = _y + size * std::sin(a2);
+
+                const float cross = (mouseX - ax) * (by - ay) - (mouseY - ay) * (bx - ax);
+                hasNeg = hasNeg || (cross < 0);
+                hasPos = hasPos || (cross > 0);
             }
-
-            const float ax = _x + size * std::cos(a1);
-            const float ay = _y + size * std::sin(a1);
-            const float bx = _x + size * std::cos(a2);
-            const float by = _y + size * std::sin(a2);
-
-            const float cross = (mouseX - ax) * (by - ay) - (mouseY - ay) * (bx - ax);
-            hasNeg = hasNeg || (cross < 0);
-            hasPos = hasPos || (cross > 0);
 
             if (hasNeg && hasPos){ 
             return false;
