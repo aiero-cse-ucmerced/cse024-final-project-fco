@@ -19,7 +19,7 @@ void CircleTool::onMouseDown(float x, float y) {
 // PENTAGON
 
 void PentagonTool::onMouseDown(float x, float y) {
-    Pentagon *p = new Pentagon();
+    Pentagon *p = new Pentagon(x,y,10,{0,0,0});
     Canvas->addShape(p);
 }
 
@@ -44,6 +44,6 @@ void DiamondTool::onMouseDown(float x, float y) {
 // TRIANGLE
 
 void TriangleTool::onMouseDown(float x, float y) {
-    Triangle *t = new Triangle();
+    Triangle *t = new Triangle(x,y,10,{0,0,0});
     Canvas->addShape(t);
 }

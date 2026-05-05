@@ -12,29 +12,45 @@
 #include "../tools/CoreTool.h"
 
 class Triangle : public Shape {
-    double pi = std::acos(-1.0);
+    double pi;
     public:
         Triangle(){
+            pi = std::acos(-1.0);
             _x = 0.0;
             _y = 0.0;
             _color = {0,0,0};
-            size = 0.2;
+            size = 10;
         }
 
-        Triangle(float x, float y, int _size, Color color){
+        Triangle(float x, float y, int s, Color color){
+            pi = std::acos(-1.0);
             _x = x;
             _y = y;
             _color = color;
-            size = _size;
+            size = s;
         }
         void draw() override;
         
         bool checkMouseBounds(float mouseX, float mouseY) const override {
-            if(mouseX <= _x && mouseY <= mouseY){
-                return true;
+            float x1 = _x;
+            float y1 = _y + size;
+            float x2 = _x - size * std::sin(pi / 3);
+            float y2 = _y - size * std::cos(pi / 3);
+            float x3 = _x + size * std::sin(pi / 3);
+            float y3 = y2;
+
+            auto sign = [](float px, float py, float ax, float ay, float bx, float by) {
+            return (px - bx) * (ay - by) - (ax - bx) * (py - by);
             };
-            return false;
-        };
+
+            float d1 = sign(mouseX, mouseY, x1, y1, x2, y2);
+            float d2 = sign(mouseX, mouseY, x2, y2, x3, y3);
+            float d3 = sign(mouseX, mouseY, x3, y3, x1, y1);
+
+            bool has_neg = (d1 < 0) || (d2 < 0) || (d3 < 0);
+            bool has_pos = (d1 > 0) || (d2 > 0) || (d3 > 0);
+            return !(has_neg && has_pos);
+    };
 
 };
 

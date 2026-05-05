@@ -12,31 +12,33 @@
 #include "../tools/CoreTool.h"
 
 class Pentagon : public Shape {
-    double pi = std::acos(-1.0);
+    double pi;
     public:
         Pentagon(){
+            pi = std::acos(-1.0);
             _x = 0.0;
             _y = 0.0;
             _color = {0,0,0};
-            size = 0.2;
+            size = 10;
         }
 
-        Pentagon(float x, float y, int _size, Color color){
+        Pentagon(float x, float y, int s, Color color){
+            pi = std::acos(-1.0);
             _x = x;
             _y = y;
             _color = color;
-            size = _size;
+            size = s;
         }
         void draw() override;
         
         bool checkMouseBounds(float mouseX, float mouseY) const override {
-            if(mouseX <= _x && mouseY <= mouseY){
-                return true;
-            };
-            return false;
-        };
-
+            float dx = mouseX - _x;
+            float dy = mouseY - _y;
+            return dx * dx + dy * dy <= size * size;
+        }   
+        
 };
+
 
 class PentagonTool : public aiero::CoreTool {
     TOOL _name = SHAPE_PENTAGON;
