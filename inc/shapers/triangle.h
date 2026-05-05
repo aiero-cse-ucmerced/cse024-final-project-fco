@@ -12,10 +12,27 @@
 #include "../tools/CoreTool.h"
 
 class Triangle : public Shape {
+    double pi = std::acos(-1.0);
     public:
+        Triangle(){
+            _x = 0.0;
+            _y = 0.0;
+            _color = {0,0,0};
+            size = 0.2;
+        }
+
+        Triangle(float x, float y, int _size, Color color){
+            _x = x;
+            _y = y;
+            _color = color;
+            size = _size;
+        }
         void draw() override;
         
         bool checkMouseBounds(float mouseX, float mouseY) const override {
+            if(mouseX <= _x && mouseY <= mouseY){
+                return true;
+            };
             return false;
         };
 
@@ -26,7 +43,10 @@ class TriangleTool : public aiero::CoreTool {
 
     public:
         TriangleTool() {
-            // change whatever
+            _obj = new bobcat::Button(0, 0, 45, 45, "");
+            _obj->box(FL_NO_BOX); // no background
+            _obj->image(new Fl_PNG_Image("assets/triangle.png"));
+            _obj->align(FL_ALIGN_IMAGE_BACKDROP); // necessary for image to align center
         };
 
         // optional
