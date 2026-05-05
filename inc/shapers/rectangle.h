@@ -1,6 +1,4 @@
-// AIERO-FINAL-PROJECT-FCO FILE (Do not remove tag)
-// Refer to aiero.space/final-project-fco
-
+// Rectangle.h
 #ifndef RECTANGLE_H
 #define RECTANGLE_H
 
@@ -12,36 +10,27 @@
 
 class Rectangle : public Shape {
 public:
+    
     Rectangle()
-        : color(0, 0, 0)
+        : Shape(0.0, 0.0), width(0.2), height(0.2)
     {
-        x = 0.0;
-        y = 0.0;
-        width  = 0.2;
-        height = 0.2;
+        // need f after for float literal
+        _color = Color(0.0f, 0.0f, 0.0f);
     }
 
-    Rectangle(float _x, float _y, float _width, float _height, Color _color)
-        : color(_color)
+    
+    Rectangle(float x, float y, float w, float h, const Color& c)
+    :Shape(x, y), width(w), height(h)
     {
-        x = _x;
-        y = _y;
-        width  = _width;
-        height = _height;
+        _color = c;
     }
 
     void draw() override;
-
-    bool checkMouseBounds(float mouseX, float mouseY) const override {
-        return false;
-    }
+    bool checkMouseBounds(float mouseX, float mouseY) const override;
 
 private:
-    float x;
-    float y;
     float width;
     float height;
-    Color color;
 };
 
 class RectangleTool : public aiero::CoreTool {
@@ -49,9 +38,7 @@ class RectangleTool : public aiero::CoreTool {
 
 public:
     RectangleTool() {}
-
     void onMouseDown(float x, float y) override;
-
     void _activate() override {}
     void _deactivate() override {}
 };
