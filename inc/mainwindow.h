@@ -143,7 +143,7 @@ namespace aiero {
             aiero::Tool* focusedTool = toolbar->focusedTool();
             if (focusedTool == nullptr) return;
 
-            focusedTool->onMouseDownCb(mouseX, mouseY);
+            focusedTool->onMouseUpCb(mouseX, mouseY);
             
         };
         void onMouseDownEvent(bobcat::Widget* sender, float mouseX, float mouseY) override {
