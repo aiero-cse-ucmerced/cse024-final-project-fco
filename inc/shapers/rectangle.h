@@ -26,7 +26,11 @@ public:
     }
 
     void draw() override;
-    bool checkMouseBounds(float mouseX, float mouseY) const override;
+    bool checkMouseBounds(float mouseX, float mouseY) const override {
+    return (mouseX >= _x - width * 0.5f && mouseX <= _x + width * 0.5f)
+        && (mouseY >= _y - height * 0.5f && mouseY <= _y + height * 0.5f);
+}
+
 
 private:
     float width;
