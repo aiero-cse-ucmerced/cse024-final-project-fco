@@ -18,6 +18,19 @@ namespace utils {
     template <typename B>
     std::vector<B> copyVector(const std::vector<B> &lhs) {
         std::vector<B> rhs = {};
+        rhs.reserve(lhs.size()); // reserves the same memory capacity as lhs
+
+        for (const auto& a : lhs) {
+            rhs.push_back(a);    
+        }
+        
+        return rhs;
+    };
+    
+    template <typename B, typename C>
+    std::vector<B> copyVector(const std::vector<C> &lhs) {
+        std::vector<B> rhs = {};
+        rhs.reserve(lhs.size()); // reserves the same memory capacity as lhs
 
         for (const auto& a : lhs) {
             rhs.push_back(a);    
