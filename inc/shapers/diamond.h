@@ -26,8 +26,10 @@ public:
 
   void draw() override;
   bool checkMouseBounds(float mouseX, float mouseY) const override {
-
-    return false;
+    float dx = std::abs(mouseX - _x) / (width  / 2.0f);
+    float dy = std::abs(mouseY - _y) / (height / 2.0f);
+    return (dx + dy) <= 1.0f;
+   
 }
 
 private:
