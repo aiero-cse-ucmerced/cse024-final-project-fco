@@ -46,6 +46,15 @@ void Circle::draw() {
 }
 
 void Diamond::draw() {
+    const BaseColor b = _color.toBase();
+    glColor3f(b.r, b.g, b.b);
+
+    glBegin(GL_POLYGON);
+        glVertex2f(_x, _y + (height * 0.5f)); 
+        glVertex2f(_x + (width * 0.5f), _y);               
+        glVertex2f(_x,_y - (height * 0.5f)); 
+        glVertex2f(_x - (width * 0.5f), _y);               
+    glEnd();
     
 }
 
