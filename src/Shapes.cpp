@@ -36,9 +36,10 @@ void Circle::draw() {
 
     glBegin(GL_POLYGON);
     for(int i = 0; i < NUM_SEGMENTS; i ++){
-        float angle = i * TWO_PI / N;
+        float angle = i * TWO_PI / NUM_SEGMENTS;
         float vx = _x + _radius * cos(angle);
         float vy = _y + _radius * sin(angle);
+
         glVertex2f(vx, vy);
     }
     glEnd();
