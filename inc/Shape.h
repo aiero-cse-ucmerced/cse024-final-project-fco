@@ -30,17 +30,21 @@ public:
 
     // TODO: copy constructor for history
     Shape(const Shape& parent) : _color(parent.color()) {
-
+        _x = parent.x();
+        _y = parent.y();
     };
-    
+
+    // read only properties
+    float x() const { return _x; };
+    float y() const { return _y; };
+    const Color color() const { return _color; };
+
     void color(Color newColor) {
         _color = newColor;
         // stuff happens
     };
-
     void changeSize(float s) { size = utils::clamp<float>(s, 0, 100); };
     
-    const Color color() const { return _color; };
     virtual void draw() = 0;
     virtual bool checkMouseBounds(float mouseX, float mouseY) const = 0;
 

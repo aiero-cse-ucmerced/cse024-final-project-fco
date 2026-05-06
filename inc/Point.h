@@ -16,6 +16,10 @@ public:
         _y = y;
     };
 
+    Point(const Point& parentPt) : Shape(parentPt) {
+        // do nothing
+    };
+
     void draw() override;
     
     bool checkMouseBounds(float mouseX, float mouseY) const override {
