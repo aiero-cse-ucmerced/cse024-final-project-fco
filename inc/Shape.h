@@ -34,6 +34,8 @@ public:
         _y = parent.y();
     };
 
+    Shape(const Shape* parent) : Shape(*parent) {};
+
     // read only properties
     float x() const { return _x; };
     float y() const { return _y; };
@@ -41,8 +43,11 @@ public:
 
     void color(Color newColor) {
         _color = newColor;
-        // stuff happens
     };
+    void color(int r, int g, int b) {
+        _color = Color(r, g, b);
+    };
+    
     void changeSize(float s) { size = utils::clamp<float>(s, 0, 100); };
     
     virtual void draw() = 0;
