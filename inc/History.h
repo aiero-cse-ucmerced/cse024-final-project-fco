@@ -79,7 +79,7 @@ namespace aiero {
                 list.erase(list.begin()+_index+1, list.end());
             }
 
-            if (_length()+1 > maxRecord) {
+            if (_length()+1 > (std::size_t) maxRecord) {
                 list.erase(list.begin());
             }
 
