@@ -1,6 +1,7 @@
 // AIERO-FINAL-PROJECT-FCO FILE (Do not remove tag)
 // Refer to aiero.space/final-project-fco
 
+#include "Canvas.h"
 #include "Menubar.h"
 #include "Toolbar.h"
 #include "shapers/circle.h"
@@ -44,6 +45,8 @@ MWMenubar::MWMenubar(int w, int h) : Menubar(w, h) {
     editMenuTabRedo = addItem("Edit/Redo");
     editMenuTabDeleteCurrentLayer = addItem("Edit/Delete Current Layer");
     editMenuTabDeleteClearCanvas = addItem("Edit/Clear Canvas");
+    
+    Canvas = nullptr;
 
     // cout << "mw menubar init done" << endl;
 };
@@ -80,6 +83,7 @@ MWSidePanel::MWSidePanel(int x, int y, int w, int h)
 
     colorPanelWindow = new Window(0, 0, w, h * 0.4);
     colorPanelWindow->box(FL_BORDER_BOX);
+    _addWindowLabel(colorPanelWindow, "Color");
     // TEAM TODO: create the implementation here
     // colorPanelWindow->color(sidePanel->color());
     
@@ -87,6 +91,7 @@ MWSidePanel::MWSidePanel(int x, int y, int w, int h)
 
     sizePanelWindow = new Window(0, colorPanelWindow->h(), w, h * 0.25);
     sizePanelWindow->box(FL_BORDER_BOX);
+    _addWindowLabel(colorPanelWindow, "Size");
     // TEAM TODO: create the implementation here
     
     sizePanelWindow->end();
@@ -94,9 +99,12 @@ MWSidePanel::MWSidePanel(int x, int y, int w, int h)
     layerPanelWindow =
         new Window(0, sizePanelWindow->y() + sizePanelWindow->h(), w, h * 0.35);
     layerPanelWindow->box(FL_BORDER_BOX);
+    _addWindowLabel(colorPanelWindow, "Layers");
     // TEAM TODO: create the implementation here
     layerPanelWindow->end();
 
     // end of side panel creation
     sidePanel->end();
+
+    Canvas = nullptr;
 }

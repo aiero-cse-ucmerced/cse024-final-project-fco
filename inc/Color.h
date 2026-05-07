@@ -6,6 +6,7 @@
 #define COLOR_H
 
 #include <cmath>
+#include <iostream>
 #include "utils.h"
 
 // max value up to 1.0
@@ -38,6 +39,15 @@ public:
     BaseColor toBase() {
         return {_r/255, _g/255, _b/255};
     };
+
+    friend std::ostream &operator<<(std::ostream &os, const Color& color);
 };
 
+inline std::ostream &operator<<(std::ostream &os, const Color& color) {
+    os << color.r() << ", " << color.g() << ", " << color.b();
+    // os << std::endl;
+
+    return os;
+};
+    
 #endif

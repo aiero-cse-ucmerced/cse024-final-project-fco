@@ -7,6 +7,7 @@
 
 #include <functional>
 #include <vector>
+#include <iostream>
 
 
 namespace aiero {
@@ -50,24 +51,33 @@ namespace aiero {
 
         void rewind() {
             if (_index-1 < 0) return;
+            if (list.empty()) return;
+            
+            // std::cout << "current index:" << _index << std::endl;
+            // std::cout << "last index: " << (int)_length() - 1 << std::endl;
+            // std::cout << "attempting to rewind to index" << _index-1 << std::endl;
             
             _index -= 1;
+            // std::cout << "calling history record " << _index+1 << " to remove itself" << std::endl;
             if (list[_index+1].remove) 
                 list[_index+1].remove(list[_index+1].value);
             preApply(list[_index]);
             if (list[_index].apply)
                 list[_index].apply(list[_index].value);
+            // std::cout << "rewinded to index " << _index << " from previous index " << _index-1 << std::endl;
         };
 
         void forward() {
-            if (_index+1 > _length() - 1) return;
+            if (_index+1 > (int) _length() - 1) return;
+            if (list.empty()) return;
 
             _index += 1;
-            if (list[_index-1].remove)
-                list[_index-1].remove(list[_index-1].value);
+            // if (list[_index-1].remove)
+            //     list[_index-1].remove(list[_index-1].value);
             preApply(list[_index]);
             if (list[_index].apply)
                 list[_index].apply(list[_index].value);
+            // std::cout << "forwarded to index " << _index << " from previous index " << _index-1 << std::endl;
             // preApply(list.back());
             // list.back()
         };
@@ -79,12 +89,30 @@ namespace aiero {
                 list.erase(list.begin()+_index+1, list.end());
             }
 
-            if (_length()+1 > maxRecord) {
+            if (_length()+1 > (std::size_t) maxRecord) {
                 list.erase(list.begin());
             }
 
+            // std::cout << "history " << _index+1 << " was created" << std::endl;
+
             _index += 1;            
             list.push_back({arr});
+        };
+        
+        void add(A arr, std::function<void(A)> applyCb) {
+            const int latestIndex = _length() - 1;
+            if (_index < latestIndex) {
+                // Overwrite older records from the current index
+                list.erase(list.begin()+_index+1, list.end());
+            }
+
+            if (_length()+1 > (std::size_t) maxRecord) {
+                list.erase(list.begin());
+            }
+
+            // std::cout << "history " << _index+1 << " was created" << std::endl;
+            _index += 1;            
+            list.push_back({arr, applyCb});
         };
         
         // with apply and remove callback
@@ -93,6 +121,10 @@ namespace aiero {
             if (_index < latestIndex) {
                 // Overwrite older records from the current index
                 list.erase(list.begin()+_index+1, list.end());
+            }
+
+            if (_length()+1 > (std::size_t) maxRecord) {
+                list.erase(list.begin());
             }
 
             _index += 1;            

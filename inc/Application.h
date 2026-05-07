@@ -17,6 +17,9 @@ class Application : public bobcat::Application_ {
     aiero::MWToolbar *toolBar;
 public:
     Application();
+
+    void undo(bobcat::Widget* sender);
+    void redo(bobcat::Widget* sender);
 };
 
 #endif
