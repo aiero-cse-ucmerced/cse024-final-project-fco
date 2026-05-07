@@ -11,10 +11,14 @@
 
 #include <FL/Enumerations.H>
 #include <FL/Fl_Group.H>
+#include <FL/fl_draw.H>
+#include <algorithm>
 #include <bobcat_ui/bobcat_ui.h>
 #include <bobcat_ui/group.h>
 #include <bobcat_ui/menu.h>
+#include <bobcat_ui/textbox.h>
 #include <bobcat_ui/window.h>
+#include <cmath>
 #include <unordered_map>
 
 namespace aiero {
@@ -88,6 +92,13 @@ namespace aiero {
         bobcat::Window* sizePanelWindow;
         bobcat::Window* layerPanelWindow;
 
+        void _addWindowLabel(bobcat::Window* window, const std::string& label) {
+            bobcat::TextBox* tbox = new bobcat::TextBox(0, 0, 70, 25, label);
+            tbox->align(FL_ALIGN_CENTER);
+            tbox->box(FL_BORDER_BOX);
+            tbox->parent(window);
+            window->add(tbox);
+        };
     public:
         MWSidePanel(int x, int y, int w, int h);
 

@@ -80,6 +80,7 @@ MWSidePanel::MWSidePanel(int x, int y, int w, int h)
 
     colorPanelWindow = new Window(0, 0, w, h * 0.4);
     colorPanelWindow->box(FL_BORDER_BOX);
+    _addWindowLabel(colorPanelWindow, "Color");
     // TEAM TODO: create the implementation here
     // colorPanelWindow->color(sidePanel->color());
     
@@ -87,6 +88,7 @@ MWSidePanel::MWSidePanel(int x, int y, int w, int h)
 
     sizePanelWindow = new Window(0, colorPanelWindow->h(), w, h * 0.25);
     sizePanelWindow->box(FL_BORDER_BOX);
+    _addWindowLabel(colorPanelWindow, "Size");
     // TEAM TODO: create the implementation here
     
     sizePanelWindow->end();
@@ -94,6 +96,7 @@ MWSidePanel::MWSidePanel(int x, int y, int w, int h)
     layerPanelWindow =
         new Window(0, sizePanelWindow->y() + sizePanelWindow->h(), w, h * 0.35);
     layerPanelWindow->box(FL_BORDER_BOX);
+    _addWindowLabel(colorPanelWindow, "Layers");
     // TEAM TODO: create the implementation here
     layerPanelWindow->end();
 
