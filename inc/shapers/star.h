@@ -23,6 +23,9 @@ public:
     }
 
     void draw() override;
+    Shape* clone() const override {
+        return new Star(*this);
+    };
 
     bool checkMouseBounds(float mouseX, float mouseY) const override {
         const int VERTICES = 10;
