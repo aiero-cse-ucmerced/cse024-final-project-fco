@@ -34,7 +34,7 @@ class Triangle : public Shape {
             size = s;
         }
         void draw() override;
-        Shape* clone() const override {
+        Shape* clone() override {
             return new Triangle(*this);
         };
 
