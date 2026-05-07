@@ -34,6 +34,10 @@ class Triangle : public Shape {
             size = s;
         }
         void draw() override;
+        Shape* clone() const override {
+            return new Triangle(*this);
+        };
+
         
         bool checkMouseBounds(float mouseX, float mouseY) const override {
             float x1 = _x;
@@ -75,6 +79,7 @@ class TriangleTool : public aiero::CoreTool {
         // required
         void _activate() override {};
         void _deactivate() override {};
+
 };
 
 #endif
