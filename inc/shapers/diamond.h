@@ -24,13 +24,16 @@ public:
         _color = c;
     }
 
-  void draw() override;
-  bool checkMouseBounds(float mouseX, float mouseY) const override {
-    float dx = std::abs(mouseX - _x) / (width  / 2.0f);
-    float dy = std::abs(mouseY - _y) / (height / 2.0f);
-    return (dx + dy) <= 1.0f;
-   
-}
+    void draw() override;
+    Shape* clone() const override {
+        return new Diamond(*this);
+    };
+
+    bool checkMouseBounds(float mouseX, float mouseY) const override {
+        float dx = std::abs(mouseX - _x) / (width  / 2.0f);
+        float dy = std::abs(mouseY - _y) / (height / 2.0f);
+        return (dx + dy) <= 1.0f;
+    }
 
 private:
     float width;
