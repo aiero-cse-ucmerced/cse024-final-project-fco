@@ -1,6 +1,7 @@
 // AIERO-FINAL-PROJECT-FCO FILE (Do not remove tag)
 // Refer to aiero.space/final-project-fco
 
+#include "Canvas.h"
 #include "Menubar.h"
 #include "Toolbar.h"
 #include "shapers/circle.h"
@@ -44,6 +45,8 @@ MWMenubar::MWMenubar(int w, int h) : Menubar(w, h) {
     editMenuTabRedo = addItem("Edit/Redo");
     editMenuTabDeleteCurrentLayer = addItem("Edit/Delete Current Layer");
     editMenuTabDeleteClearCanvas = addItem("Edit/Clear Canvas");
+    
+    Canvas = nullptr;
 
     // cout << "mw menubar init done" << endl;
 };
@@ -102,4 +105,6 @@ MWSidePanel::MWSidePanel(int x, int y, int w, int h)
 
     // end of side panel creation
     sidePanel->end();
+
+    Canvas = nullptr;
 }
