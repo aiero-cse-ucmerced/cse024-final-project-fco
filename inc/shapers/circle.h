@@ -24,6 +24,10 @@ public:
     }
 
     void draw() override;
+    Shape* clone() const override {
+        return new Circle(*this);
+    };
+
     bool checkMouseBounds(float mouseX, float mouseY) const override {
         const float dx = mouseX - _x;
         const float dy = mouseY - _y;
