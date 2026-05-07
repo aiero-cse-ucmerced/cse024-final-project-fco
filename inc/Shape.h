@@ -52,6 +52,7 @@ public:
     
     virtual void draw() = 0;
     virtual bool checkMouseBounds(float mouseX, float mouseY) const = 0;
+    virtual Shape* clone() = 0; // required for copying objects on Canvas
 
     virtual ~Shape() {
         // do nothing
