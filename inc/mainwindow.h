@@ -23,6 +23,9 @@
 
 namespace aiero {
     class MWMenubar : public aiero::Menubar {
+        // internal
+        aiero::Canvas* Canvas;
+
         bobcat::MenuItem *viewMenuTabToolbar;
         bobcat::MenuItem *viewMenuTabColorPicker;
         bobcat::MenuItem *viewMenuTabSize;
@@ -76,7 +79,8 @@ namespace aiero {
 
     public:
         MWMenubar(int w, int h); // defined in source files
-
+        void internalCanvas(aiero::Canvas* c) { if (Canvas != nullptr) return; Canvas = c; };
+        
         void linkTabVisibility(bobcat::MenuItem *mitem, bobcat::Widget *widget) {
             if (linkedMenuItems.find(mitem) != linkedMenuItems.end()) throw mitem->label() + " menu item is already linked to a widget";
             linkedMenuItems[mitem] = widget;
@@ -86,6 +90,7 @@ namespace aiero {
     };
 
     class MWSidePanel : public bobcat::Group {
+        aiero::Canvas* Canvas;
         bobcat::Window* sidePanel;
         
         bobcat::Window* colorPanelWindow;
@@ -101,6 +106,7 @@ namespace aiero {
         };
     public:
         MWSidePanel(int x, int y, int w, int h);
+        void internalCanvas(aiero::Canvas* c) { if (Canvas != nullptr) return; Canvas = c; };
 
         bobcat::Window* operator[](const std::string &subWindow) {
             if (subWindow == "Color") return colorPanelWindow;
@@ -116,6 +122,9 @@ namespace aiero {
     };
 
     class MWToolbar : public aiero::Toolbar {
+        // internal
+        aiero::Canvas* Canvas;
+        
         // bobcat::Window* _obj;
         aiero::CoreTool *selectorTool;
         aiero::CoreTool *paintBrushTool;
