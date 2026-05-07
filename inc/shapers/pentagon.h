@@ -34,7 +34,7 @@ class Pentagon : public Shape {
             size = s;
         }
         void draw() override;
-        Shape* clone() const override {
+        Shape* clone() override {
             return new Pentagon(*this);
         };
         
