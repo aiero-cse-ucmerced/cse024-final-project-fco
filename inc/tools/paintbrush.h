@@ -27,10 +27,15 @@ class PaintBrushTool : public aiero::CoreTool {
 
         // required
         void _activate() override {
-
+            _obj->box(FL_ROUNDED_BOX);
+            _obj->down_box(FL_ROUNDED_BOX);
+            _obj->redraw();
         };
 
         void _deactivate() override {
+            _obj->box(FL_NO_BOX);
+            _obj->down_box(FL_NO_BOX);
+            _obj->redraw();
 
         };
 };
