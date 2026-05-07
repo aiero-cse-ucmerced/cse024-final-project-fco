@@ -9,6 +9,7 @@
 #include "Shape.h"
 #include "History.h"
 #include "Toolbar.h"
+#include "utils.h"
 
 #include <GL/gl.h>
 #include <bobcat_ui/canvas.h>
@@ -23,7 +24,7 @@ namespace aiero {
     };
 
     struct CanvasRecord {
-        
+        std::vector<Layer> layers;
     };
 
     struct CanvasGridSize {
@@ -40,15 +41,19 @@ namespace aiero {
         std::vector<Layer> layers;
 
         // TODO: history
-        History<CanvasRecord> history;
+        History<CanvasRecord> snapshots;
 
         Shape *selectedShape;
 
         template<typename RecordValue>
-        void _createHistory(CANVAS_RECORD_ACTION actionType, RecordValue actionValue) {
-            if (actionValue == CANVAS_RECORD_CREATE_SHAPE) {
-                
-            }
+
+        void _applyHistory(std::vector<Layer> oldLayers) {
+
+        };
+        
+        void _createHistory() {
+            // std::vector<Layer> savedLayers = utils::deepCopyVector(layers);
+            // snapshots.add({savedLayers});
         };
 
         int _focusedLayerIndex;
@@ -63,15 +68,15 @@ namespace aiero {
         
         // event handlers
         void _onMouseUpEventCb(bobcat::Widget* sender, float mouseX, float mouseY) {
-            std::cout << "internal mouse up event cb" << std::endl;
+            // std::cout << "internal mouse up event cb" << std::endl;
             onMouseUpEvent(sender, mouseX, mouseY);
         };
         void _onMouseDownEventCb(bobcat::Widget* sender, float mouseX, float mouseY) {
-            std::cout << "internal mouse down event cb" << std::endl;
+            // std::cout << "internal mouse down event cb" << std::endl;
             onMouseDownEvent(sender, mouseX, mouseY);
         };
         void _onMouseDragEventCb(bobcat::Widget* sender, float mouseX, float mouseY) {
-            std::cout << "internal mouse drag event cb" << std::endl;
+            // std::cout << "internal mouse drag event cb" << std::endl;
             onMouseDragEvent(sender, mouseX, mouseY);
         };
 
@@ -125,6 +130,15 @@ namespace aiero {
         
         void addShape(Shape* shape);
         void deleteShapesFromMousePosition(float mx, float my); // delete shapes
+        void deleteLayersFromMousePosition(float mx, float my); // delete shapes
+
+        struct LayeredShape {
+            Layer layer;
+            Shape* shape;
+        };
+        
+        std::vector<LayeredShape> getShapesFromMousePosition(float mx, float my);
+        std::vector<Layer> getLayersFromMousePosition(float mx, float my);
         
 
         // required
