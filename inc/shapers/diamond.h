@@ -25,7 +25,7 @@ public:
     }
 
     void draw() override;
-    Shape* clone() const override {
+    Shape* clone() override {
         return new Diamond(*this);
     };
 
