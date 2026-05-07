@@ -34,6 +34,9 @@ class Pentagon : public Shape {
             size = s;
         }
         void draw() override;
+        Shape* clone() const override {
+            return new Pentagon(*this);
+        };
         
         bool checkMouseBounds(float mouseX, float mouseY) const override {
             bool hasNeg = false;
